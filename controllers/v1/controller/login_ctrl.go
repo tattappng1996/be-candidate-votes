@@ -29,9 +29,6 @@ func (ctrl *controller) Login(c echo.Context) error {
 		log.Error(err.Error())
 		return c.JSON(http.StatusBadRequest, models.NewErrorWebResponse(err))
 	}
-	if len(req.Username) > 50 {
-		return c.JSON(http.StatusBadRequest, models.Err_invalid_param)
-	}
 
 	// execute service
 	resp, err := ctrl.srv.Login(ctx, *req)

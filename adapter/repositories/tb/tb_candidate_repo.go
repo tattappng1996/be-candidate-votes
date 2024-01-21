@@ -7,17 +7,16 @@ import (
 	"gorm.io/gorm"
 )
 
-func (r *tbRepo) GetCandidate(ctx context.Context, filter models.Candidate) (models.Candidate, error) {
-	query := r.db.WithContext(ctx).Table(`candidates`)
+func (r *tbRepo) ListCandidateWithVote(ctx context.Context, filter models.ListCandidateRequest) ([]models.CandidateResponse, error) {
+	query := r.db.WithContext(ctx).
+		Select(`c.*, COUNT(v.id) AS vote_count`).Table(`candidates c`).
+		Joins(`LEFT JOIN votes v ON v.candidate_id = c.id`).Group(`c.id`)
 
 	if filter.ID > 0 {
-		query = query.Where(`id = ?`, filter.ID)
-	}
-	if filter.Name != "" {
-		query = query.Where(`name = ?`, filter.Name)
+		query = query.Where(`c.id = ?`, filter.ID)
 	}
 
-	c := models.Candidate{}
+	c := []models.CandidateResponse{}
 	if err := query.Scan(&c).Error; err != nil {
 		return c, err
 	}

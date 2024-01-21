@@ -13,6 +13,7 @@ type Controller interface {
 
 	// private
 	CreateCandidate(c echo.Context) error
+	GetCandidate(c echo.Context) error
 	UpdateCandidate(c echo.Context) error
 }
 

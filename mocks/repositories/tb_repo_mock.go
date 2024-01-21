@@ -65,21 +65,6 @@ func (mr *MockTbRepoMockRecorder) CreateUser(ctx, user interface{}) *gomock.Call
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CreateUser", reflect.TypeOf((*MockTbRepo)(nil).CreateUser), ctx, user)
 }
 
-// GetCandidate mocks base method.
-func (m *MockTbRepo) GetCandidate(ctx context.Context, filter models.Candidate) (models.Candidate, error) {
-	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "GetCandidate", ctx, filter)
-	ret0, _ := ret[0].(models.Candidate)
-	ret1, _ := ret[1].(error)
-	return ret0, ret1
-}
-
-// GetCandidate indicates an expected call of GetCandidate.
-func (mr *MockTbRepoMockRecorder) GetCandidate(ctx, filter interface{}) *gomock.Call {
-	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetCandidate", reflect.TypeOf((*MockTbRepo)(nil).GetCandidate), ctx, filter)
-}
-
 // GetUser mocks base method.
 func (m *MockTbRepo) GetUser(ctx context.Context, filter models.User) (models.User, error) {
 	m.ctrl.T.Helper()
@@ -93,6 +78,21 @@ func (m *MockTbRepo) GetUser(ctx context.Context, filter models.User) (models.Us
 func (mr *MockTbRepoMockRecorder) GetUser(ctx, filter interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetUser", reflect.TypeOf((*MockTbRepo)(nil).GetUser), ctx, filter)
+}
+
+// ListCandidateWithVote mocks base method.
+func (m *MockTbRepo) ListCandidateWithVote(ctx context.Context, filter models.ListCandidateRequest) ([]models.CandidateResponse, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "ListCandidateWithVote", ctx, filter)
+	ret0, _ := ret[0].([]models.CandidateResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// ListCandidateWithVote indicates an expected call of ListCandidateWithVote.
+func (mr *MockTbRepoMockRecorder) ListCandidateWithVote(ctx, filter interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ListCandidateWithVote", reflect.TypeOf((*MockTbRepo)(nil).ListCandidateWithVote), ctx, filter)
 }
 
 // UpdateCandidate mocks base method.

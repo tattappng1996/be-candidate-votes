@@ -119,6 +119,38 @@ const docTemplate = `{
                 }
             }
         },
+        "/api/v1/candidate/:id": {
+            "get": {
+                "description": "You can use this API to get candidate by id in the system.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Private"
+                ],
+                "summary": "GetCandidate",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Bearer ${token}",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.GetCandidateResponse"
+                        }
+                    }
+                }
+            }
+        },
         "/api/v1/login": {
             "post": {
                 "description": "Users need to use this API to log in and grant access token.",
@@ -189,6 +221,23 @@ const docTemplate = `{
         }
     },
     "definitions": {
+        "models.CandidateResponse": {
+            "type": "object",
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "vote_count": {
+                    "type": "integer"
+                }
+            }
+        },
         "models.CreateCandidateRequest": {
             "type": "object",
             "properties": {
@@ -205,6 +254,17 @@ const docTemplate = `{
         "models.CreateCandidateResponse": {
             "type": "object",
             "properties": {
+                "status": {
+                    "$ref": "#/definitions/models.ResponseStatus"
+                }
+            }
+        },
+        "models.GetCandidateResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/models.CandidateResponse"
+                },
                 "status": {
                     "$ref": "#/definitions/models.ResponseStatus"
                 }

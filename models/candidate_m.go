@@ -30,3 +30,35 @@ type UpdateCandidateRequest struct {
 	Name        string `json:"name" validate:"max=30" example:"karen (Max 30 Chars)"`
 	Description string `json:"description"`
 }
+
+type ListCandidateRequest struct {
+	ID           int    `json:"-"` // for getbyID
+	SearchByName string `json:"search_by_name"`
+	Limit        int    `json:"limit"`
+	Page         int    `json:"page"`
+	PageCount    int    `json:"page_count"`
+}
+
+type ListCandidateResponse struct {
+	Data           ListCandidateResponseData `json:"data"`
+	ResponseStatus ResponseStatus            `json:"status"`
+}
+
+type ListCandidateResponseData struct {
+	Candidates []CandidateResponse `json:"candidates"`
+	Limit      int                 `json:"limit"`
+	Page       int                 `json:"page"`
+	PageCount  int                 `json:"page_count"`
+}
+
+type GetCandidateResponse struct {
+	Data           CandidateResponse `json:"data"`
+	ResponseStatus ResponseStatus    `json:"status"`
+}
+
+type CandidateResponse struct {
+	ID          int    `json:"id"`
+	Name        string `json:"name"`
+	Description string `json:"description"`
+	VoteCount   int    `json:"vote_count"`
+}

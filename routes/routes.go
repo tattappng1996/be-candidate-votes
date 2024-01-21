@@ -47,7 +47,18 @@ func routes(e *echo.Echo, cfg *appconfig.AppConfig, log *zap.Logger) {
 	// Private
 	v1.Use(middlewares.AuthMiddleWare(cfg))
 	v1.POST("/candidate", ctrl.CreateCandidate)
+	v1.GET("/candidate/:id", ctrl.GetCandidate)
 	v1.PUT("/candidate", ctrl.UpdateCandidate)
+	//v1.GET("/candidates", ctrl.ListCandidate)
+	//v1.DELETE("/candidate/:id", ctrl.DeleteCandidate)
+	//v1.PATCH("/candidate/:id", ctrl.UndeleteCandidate)
+	//v1.DELETE("/candidates", ctrl.ClearCandidates)
+	//v1.POST("/vote", ctrl.Vote)
+	//v1.DELETE("/vote", ctrl.UnVote)
+	//v1.PUT("/vote", ctrl.ClearVote)
+	// bonus
+	//v1.GET("/report", ctrl.ExportReport)
+	//v1.POST("/vote-state", ctrl.OpenOrCloseVote)
 }
 
 // HealthCheck godoc

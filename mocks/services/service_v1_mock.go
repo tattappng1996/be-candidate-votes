@@ -50,6 +50,21 @@ func (mr *MockServiceMockRecorder) CreateCandidate(ctx, req interface{}) *gomock
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CreateCandidate", reflect.TypeOf((*MockService)(nil).CreateCandidate), ctx, req)
 }
 
+// ListCandidate mocks base method.
+func (m *MockService) ListCandidate(ctx context.Context, req models.ListCandidateRequest) (models.ListCandidateResponse, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "ListCandidate", ctx, req)
+	ret0, _ := ret[0].(models.ListCandidateResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// ListCandidate indicates an expected call of ListCandidate.
+func (mr *MockServiceMockRecorder) ListCandidate(ctx, req interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ListCandidate", reflect.TypeOf((*MockService)(nil).ListCandidate), ctx, req)
+}
+
 // Login mocks base method.
 func (m *MockService) Login(ctx context.Context, req models.RegisterUserRequest) (models.LoginResponse, error) {
 	m.ctrl.T.Helper()
