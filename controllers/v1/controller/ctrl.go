@@ -20,6 +20,7 @@ type Controller interface {
 	ClearCandidates(c echo.Context) error
 	Vote(c echo.Context) error
 	ClearVotes(c echo.Context) error
+	ExportReport(c echo.Context) error
 	UpdateVoteStatus(c echo.Context) error
 }
 

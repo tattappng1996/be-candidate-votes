@@ -23,6 +23,17 @@ func (r *tbRepo) GetUser(ctx context.Context, filter models.User) (models.User, 
 	return u, nil
 }
 
+func (r *tbRepo) ListUser(ctx context.Context, filter models.User) ([]models.User, error) {
+	query := r.db.WithContext(ctx).Table(`users`)
+
+	u := []models.User{}
+	if err := query.Scan(&u).Error; err != nil {
+		return u, err
+	}
+
+	return u, nil
+}
+
 func (r *tbRepo) CreateUser(ctx context.Context, user *models.User) (*models.User, error) {
 	result := r.db.WithContext(ctx).Table(`users`).Create(user)
 	if result.Error != nil {

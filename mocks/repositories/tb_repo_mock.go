@@ -168,6 +168,21 @@ func (mr *MockTbRepoMockRecorder) GetVoteStatus(ctx interface{}) *gomock.Call {
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetVoteStatus", reflect.TypeOf((*MockTbRepo)(nil).GetVoteStatus), ctx)
 }
 
+// ListCandidateData mocks base method.
+func (m *MockTbRepo) ListCandidateData(ctx context.Context, filter models.ListCandidateRequest) ([]models.ReportCandidateResponse, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "ListCandidateData", ctx, filter)
+	ret0, _ := ret[0].([]models.ReportCandidateResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// ListCandidateData indicates an expected call of ListCandidateData.
+func (mr *MockTbRepoMockRecorder) ListCandidateData(ctx, filter interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ListCandidateData", reflect.TypeOf((*MockTbRepo)(nil).ListCandidateData), ctx, filter)
+}
+
 // ListCandidateWithVote mocks base method.
 func (m *MockTbRepo) ListCandidateWithVote(ctx context.Context, filter models.ListCandidateRequest) ([]models.CandidateResponse, error) {
 	m.ctrl.T.Helper()
@@ -181,6 +196,21 @@ func (m *MockTbRepo) ListCandidateWithVote(ctx context.Context, filter models.Li
 func (mr *MockTbRepoMockRecorder) ListCandidateWithVote(ctx, filter interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ListCandidateWithVote", reflect.TypeOf((*MockTbRepo)(nil).ListCandidateWithVote), ctx, filter)
+}
+
+// ListUser mocks base method.
+func (m *MockTbRepo) ListUser(ctx context.Context, filter models.User) ([]models.User, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "ListUser", ctx, filter)
+	ret0, _ := ret[0].([]models.User)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// ListUser indicates an expected call of ListUser.
+func (mr *MockTbRepoMockRecorder) ListUser(ctx, filter interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ListUser", reflect.TypeOf((*MockTbRepo)(nil).ListUser), ctx, filter)
 }
 
 // UpdateCandidate mocks base method.

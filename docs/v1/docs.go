@@ -324,7 +324,36 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/models.RegisterUserResponse"
+                            "$ref": "#/definitions/models.GeneralResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/report": {
+            "get": {
+                "description": "You can use this API to get report in the system.",
+                "consumes": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Private (Bonus)"
+                ],
+                "summary": "ExportReport",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Bearer ${token}",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.ReportResponse"
                         }
                     }
                 }
@@ -582,11 +611,51 @@ const docTemplate = `{
                 }
             }
         },
-        "models.RegisterUserResponse": {
+        "models.ReportCandidateResponse": {
             "type": "object",
             "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "vote_count": {
+                    "type": "integer"
+                }
+            }
+        },
+        "models.ReportResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/models.ReportResponseData"
+                },
                 "status": {
                     "$ref": "#/definitions/models.ResponseStatus"
+                }
+            }
+        },
+        "models.ReportResponseData": {
+            "type": "object",
+            "properties": {
+                "candidates": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/models.ReportCandidateResponse"
+                    }
+                },
+                "users": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/models.User"
+                    }
+                },
+                "vote_status": {
+                    "$ref": "#/definitions/models.VoteStatus"
                 }
             }
         },
@@ -617,6 +686,23 @@ const docTemplate = `{
                     "type": "string",
                     "maxLength": 30,
                     "example": "karen (Max 30 Chars)"
+                }
+            }
+        },
+        "models.User": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "is_active": {
+                    "type": "boolean"
+                },
+                "username": {
+                    "type": "string"
+                },
+                "voted_to": {
+                    "type": "string"
                 }
             }
         },

@@ -6,9 +6,9 @@ import (
 	"context"
 )
 
-func (srv *service) RegisterUser(ctx context.Context, req models.RegisterUserRequest) (models.RegisterUserResponse, error) {
+func (srv *service) RegisterUser(ctx context.Context, req models.RegisterUserRequest) (models.GeneralResponse, error) {
 	log := logger.Ctx(ctx)
-	response := models.RegisterUserResponse{}
+	response := models.GeneralResponse{}
 
 	userInDB, err := srv.repo.TbRepo.GetUser(ctx, models.User{
 		Username: req.Username,

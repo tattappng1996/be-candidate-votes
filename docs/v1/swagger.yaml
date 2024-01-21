@@ -88,10 +88,36 @@ definitions:
     - password
     - username
     type: object
-  models.RegisterUserResponse:
+  models.ReportCandidateResponse:
     properties:
+      description:
+        type: string
+      id:
+        type: integer
+      name:
+        type: string
+      vote_count:
+        type: integer
+    type: object
+  models.ReportResponse:
+    properties:
+      data:
+        $ref: '#/definitions/models.ReportResponseData'
       status:
         $ref: '#/definitions/models.ResponseStatus'
+    type: object
+  models.ReportResponseData:
+    properties:
+      candidates:
+        items:
+          $ref: '#/definitions/models.ReportCandidateResponse'
+        type: array
+      users:
+        items:
+          $ref: '#/definitions/models.User'
+        type: array
+      vote_status:
+        $ref: '#/definitions/models.VoteStatus'
     type: object
   models.ResponseStatus:
     properties:
@@ -112,6 +138,17 @@ definitions:
         type: string
     required:
     - id
+    type: object
+  models.User:
+    properties:
+      id:
+        type: integer
+      is_active:
+        type: boolean
+      username:
+        type: string
+      voted_to:
+        type: string
     type: object
   models.VoteRequest:
     properties:
@@ -333,10 +370,29 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/models.RegisterUserResponse'
+            $ref: '#/definitions/models.GeneralResponse'
       summary: RegisterUser
       tags:
       - Public (User)
+  /api/v1/report:
+    get:
+      consumes:
+      - application/json
+      description: You can use this API to get report in the system.
+      parameters:
+      - description: Bearer ${token}
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.ReportResponse'
+      summary: ExportReport
+      tags:
+      - Private (Bonus)
   /api/v1/vote:
     post:
       consumes:

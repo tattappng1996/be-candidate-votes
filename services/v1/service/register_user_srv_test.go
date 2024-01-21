@@ -17,7 +17,7 @@ func (t *TestServiceSuite) TestRegisterUser() {
 			GetUser(ctx, gomock.Any()).
 			Return(models.User{}, fmt.Errorf("error"))
 
-		expectedResp := models.RegisterUserResponse{}
+		expectedResp := models.GeneralResponse{}
 		expectedErr := &models.Err_backend_system
 
 		actualResp, actualErr := t.srv.RegisterUser(ctx, req)
@@ -36,7 +36,7 @@ func (t *TestServiceSuite) TestRegisterUser() {
 				ID: 1,
 			}, nil)
 
-		expectedResp := models.RegisterUserResponse{}
+		expectedResp := models.GeneralResponse{}
 		expectedErr := &models.Err_duplicate_data
 
 		actualResp, actualErr := t.srv.RegisterUser(ctx, req)
@@ -56,7 +56,7 @@ func (t *TestServiceSuite) TestRegisterUser() {
 			HashPassword(gomock.Any()).
 			Return("", fmt.Errorf("error"))
 
-		expectedResp := models.RegisterUserResponse{}
+		expectedResp := models.GeneralResponse{}
 		expectedErr := &models.Err_backend_system
 
 		actualResp, actualErr := t.srv.RegisterUser(ctx, req)
@@ -84,7 +84,7 @@ func (t *TestServiceSuite) TestRegisterUser() {
 			CreateUser(ctx, user).
 			Return(user, fmt.Errorf("error"))
 
-		expectedResp := models.RegisterUserResponse{}
+		expectedResp := models.GeneralResponse{}
 		expectedErr := &models.Err_backend_system
 
 		actualResp, actualErr := t.srv.RegisterUser(ctx, req)
@@ -112,7 +112,7 @@ func (t *TestServiceSuite) TestRegisterUser() {
 			CreateUser(ctx, user).
 			Return(user, nil)
 
-		expectedResp := models.RegisterUserResponse{
+		expectedResp := models.GeneralResponse{
 			ResponseStatus: models.SUCCESSResponse,
 		}
 		var expectedErr error

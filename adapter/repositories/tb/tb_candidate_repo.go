@@ -87,3 +87,17 @@ func (r *tbRepo) DeleteCandidates(ctx context.Context) error {
 
 	return nil
 }
+
+func (r *tbRepo) ListCandidateData(ctx context.Context, filter models.ListCandidateRequest) ([]models.ReportCandidateResponse, error) {
+	query := r.db.WithContext(ctx).Select(`c.id, c.name, c.description, v.id AS vote_id, v.user_id`).
+		Table(`candidates c`).
+		Joins(`LEFT JOIN votes v ON v.candidate_id = c.id`).
+		Where(`c.deleted_at IS NULL`)
+
+	c := []models.ReportCandidateResponse{}
+	if err := query.Scan(&c).Error; err != nil {
+		return c, err
+	}
+
+	return c, nil
+}

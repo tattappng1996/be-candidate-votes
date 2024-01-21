@@ -17,7 +17,7 @@ import (
 // @Param Request body models.RegisterUserRequest true "Request body"
 // @Produce json
 // @Consumes application/json
-// @Success 200 {object} models.RegisterUserResponse{}
+// @Success 200 {object} models.GeneralResponse{}
 // @Router /api/v1/register [post]
 func (ctrl *controller) RegisterUser(c echo.Context) error {
 	ctx := c.Request().Context()

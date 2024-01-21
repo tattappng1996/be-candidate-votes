@@ -8,7 +8,7 @@ import (
 )
 
 type Service interface {
-	RegisterUser(ctx context.Context, req models.RegisterUserRequest) (models.RegisterUserResponse, error)
+	RegisterUser(ctx context.Context, req models.RegisterUserRequest) (models.GeneralResponse, error)
 	Login(ctx context.Context, req models.RegisterUserRequest) (models.LoginResponse, error)
 
 	CreateCandidate(ctx context.Context, req models.CreateCandidateRequest) (models.GeneralResponse, error)
@@ -20,6 +20,7 @@ type Service interface {
 	Vote(context.Context, models.VoteRequest) (models.GeneralResponse, error)
 	ClearVotes(context.Context) (models.GeneralResponse, error)
 	UpdateVoteStatus(context.Context, models.VoteStatus) (models.GeneralResponse, error)
+	ExportReport(context.Context) (models.ReportResponse, error)
 }
 
 func NewService(

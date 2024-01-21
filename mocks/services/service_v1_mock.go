@@ -95,6 +95,21 @@ func (mr *MockServiceMockRecorder) DeleteCandidate(ctx, req interface{}) *gomock
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "DeleteCandidate", reflect.TypeOf((*MockService)(nil).DeleteCandidate), ctx, req)
 }
 
+// ExportReport mocks base method.
+func (m *MockService) ExportReport(arg0 context.Context) (models.ReportResponse, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "ExportReport", arg0)
+	ret0, _ := ret[0].(models.ReportResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// ExportReport indicates an expected call of ExportReport.
+func (mr *MockServiceMockRecorder) ExportReport(arg0 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ExportReport", reflect.TypeOf((*MockService)(nil).ExportReport), arg0)
+}
+
 // ListCandidate mocks base method.
 func (m *MockService) ListCandidate(ctx context.Context, req models.ListCandidateRequest) (models.ListCandidateResponse, error) {
 	m.ctrl.T.Helper()
@@ -126,10 +141,10 @@ func (mr *MockServiceMockRecorder) Login(ctx, req interface{}) *gomock.Call {
 }
 
 // RegisterUser mocks base method.
-func (m *MockService) RegisterUser(ctx context.Context, req models.RegisterUserRequest) (models.RegisterUserResponse, error) {
+func (m *MockService) RegisterUser(ctx context.Context, req models.RegisterUserRequest) (models.GeneralResponse, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "RegisterUser", ctx, req)
-	ret0, _ := ret[0].(models.RegisterUserResponse)
+	ret0, _ := ret[0].(models.GeneralResponse)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }

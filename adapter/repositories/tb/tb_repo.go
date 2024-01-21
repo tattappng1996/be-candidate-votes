@@ -10,6 +10,7 @@ import (
 type TbRepo interface {
 	GetUser(ctx context.Context, filter models.User) (models.User, error)
 	CreateUser(ctx context.Context, user *models.User) (*models.User, error)
+	ListUser(ctx context.Context, filter models.User) ([]models.User, error)
 
 	ListCandidateWithVote(ctx context.Context, filter models.ListCandidateRequest) ([]models.CandidateResponse, error)
 	CountCandidate(ctx context.Context, filter models.ListCandidateRequest) (int, error)
@@ -23,6 +24,7 @@ type TbRepo interface {
 
 	GetVoteStatus(ctx context.Context) (models.VoteStatus, error)
 	UpdateVoteStatus(ctx context.Context, filter models.VoteStatus) error
+	ListCandidateData(ctx context.Context, filter models.ListCandidateRequest) ([]models.ReportCandidateResponse, error)
 }
 
 func NewTbRepository(db *gorm.DB) TbRepo {
