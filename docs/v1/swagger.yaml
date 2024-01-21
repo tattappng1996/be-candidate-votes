@@ -7,8 +7,6 @@ definitions:
         example: karen (Max 30 Chars)
         maxLength: 30
         type: string
-    required:
-    - name
     type: object
   models.CreateCandidateResponse:
     properties:
@@ -50,6 +48,19 @@ definitions:
         type: string
       app_message:
         type: string
+    type: object
+  models.UpdateCandidateRequest:
+    properties:
+      description:
+        type: string
+      id:
+        type: integer
+      name:
+        example: karen (Max 30 Chars)
+        maxLength: 30
+        type: string
+    required:
+    - id
     type: object
 info:
   contact: {}
@@ -95,6 +106,32 @@ paths:
           schema:
             $ref: '#/definitions/models.CreateCandidateResponse'
       summary: CreateCandidate
+      tags:
+      - Private
+    put:
+      consumes:
+      - application/json
+      description: You can use this API to update/edit candidate in the system.
+      parameters:
+      - description: Bearer ${token}
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: Request body
+        in: body
+        name: Request
+        required: true
+        schema:
+          $ref: '#/definitions/models.UpdateCandidateRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.CreateCandidateResponse'
+      summary: UpdateCandidate
       tags:
       - Private
   /api/v1/login:

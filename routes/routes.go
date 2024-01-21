@@ -47,6 +47,7 @@ func routes(e *echo.Echo, cfg *appconfig.AppConfig, log *zap.Logger) {
 	// Private
 	v1.Use(middlewares.AuthMiddleWare(cfg))
 	v1.POST("/candidate", ctrl.CreateCandidate)
+	v1.PUT("/candidate", ctrl.UpdateCandidate)
 }
 
 // HealthCheck godoc

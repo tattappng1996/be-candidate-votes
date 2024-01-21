@@ -12,6 +12,7 @@ type Service interface {
 	Login(ctx context.Context, req models.RegisterUserRequest) (models.LoginResponse, error)
 
 	CreateCandidate(ctx context.Context, req models.CreateCandidateRequest) (models.CreateCandidateResponse, error)
+	UpdateCandidate(ctx context.Context, req models.UpdateCandidateRequest) (models.CreateCandidateResponse, error)
 }
 
 func NewService(

@@ -79,3 +79,18 @@ func (mr *MockServiceMockRecorder) RegisterUser(ctx, req interface{}) *gomock.Ca
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "RegisterUser", reflect.TypeOf((*MockService)(nil).RegisterUser), ctx, req)
 }
+
+// UpdateCandidate mocks base method.
+func (m *MockService) UpdateCandidate(ctx context.Context, req models.UpdateCandidateRequest) (models.CreateCandidateResponse, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "UpdateCandidate", ctx, req)
+	ret0, _ := ret[0].(models.CreateCandidateResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// UpdateCandidate indicates an expected call of UpdateCandidate.
+func (mr *MockServiceMockRecorder) UpdateCandidate(ctx, req interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UpdateCandidate", reflect.TypeOf((*MockService)(nil).UpdateCandidate), ctx, req)
+}

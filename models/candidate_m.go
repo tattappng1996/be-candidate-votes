@@ -17,10 +17,16 @@ type Candidate struct {
 }
 
 type CreateCandidateRequest struct {
-	Name        string `json:"name" validate:"required,max=30" example:"karen (Max 30 Chars)"`
+	Name        string `json:"name" validate:"max=30" example:"karen (Max 30 Chars)"`
 	Description string `json:"description"`
 }
 
 type CreateCandidateResponse struct {
 	ResponseStatus ResponseStatus `json:"status"`
+}
+
+type UpdateCandidateRequest struct {
+	ID          int    `json:"id" validate:"required"`
+	Name        string `json:"name" validate:"max=30" example:"karen (Max 30 Chars)"`
+	Description string `json:"description"`
 }

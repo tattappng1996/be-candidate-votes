@@ -13,6 +13,7 @@ type TbRepo interface {
 
 	GetCandidate(ctx context.Context, filter models.Candidate) (models.Candidate, error)
 	CreateCandidate(ctx context.Context, user *models.Candidate) (*models.Candidate, error)
+	UpdateCandidate(ctx context.Context, user models.Candidate) error
 }
 
 func NewTbRepository(db *gorm.DB) TbRepo {

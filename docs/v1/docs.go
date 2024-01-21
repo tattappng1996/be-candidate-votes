@@ -40,6 +40,45 @@ const docTemplate = `{
             }
         },
         "/api/v1/candidate": {
+            "put": {
+                "description": "You can use this API to update/edit candidate in the system.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Private"
+                ],
+                "summary": "UpdateCandidate",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Bearer ${token}",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "description": "Request body",
+                        "name": "Request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.UpdateCandidateRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.CreateCandidateResponse"
+                        }
+                    }
+                }
+            },
             "post": {
                 "description": "You can use this API to create candidates in the system.",
                 "consumes": [
@@ -152,9 +191,6 @@ const docTemplate = `{
     "definitions": {
         "models.CreateCandidateRequest": {
             "type": "object",
-            "required": [
-                "name"
-            ],
             "properties": {
                 "description": {
                     "type": "string"
@@ -226,6 +262,25 @@ const docTemplate = `{
                 },
                 "app_message": {
                     "type": "string"
+                }
+            }
+        },
+        "models.UpdateCandidateRequest": {
+            "type": "object",
+            "required": [
+                "id"
+            ],
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string",
+                    "maxLength": 30,
+                    "example": "karen (Max 30 Chars)"
                 }
             }
         }

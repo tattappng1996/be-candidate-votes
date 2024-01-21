@@ -4,18 +4,25 @@ import (
 	"be-cadidate-votes/models"
 	"be-cadidate-votes/utility/logger"
 	"context"
+	"errors"
+
+	"gorm.io/gorm"
 )
 
-func (srv *service) CreateCandidate(ctx context.Context, req models.CreateCandidateRequest) (models.CreateCandidateResponse, error) {
+func (srv *service) UpdateCandidate(ctx context.Context, req models.UpdateCandidateRequest) (models.CreateCandidateResponse, error) {
 	log := logger.Ctx(ctx)
 	response := models.CreateCandidateResponse{}
 
-	_, err := srv.repo.TbRepo.CreateCandidate(ctx, &models.Candidate{
+	if err := srv.repo.TbRepo.UpdateCandidate(ctx, models.Candidate{
+		ID:          req.ID,
 		Name:        req.Name,
 		Description: req.Description,
-	})
-	if err != nil {
+	}); err != nil {
 		log.Error(err.Error())
+		if errors.Is(err, gorm.ErrRecordNotFound) {
+			return response, &models.Err_data_not_found
+		}
+
 		return response, &models.Err_backend_system
 	}
 

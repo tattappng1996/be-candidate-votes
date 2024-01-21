@@ -94,3 +94,17 @@ func (mr *MockTbRepoMockRecorder) GetUser(ctx, filter interface{}) *gomock.Call 
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetUser", reflect.TypeOf((*MockTbRepo)(nil).GetUser), ctx, filter)
 }
+
+// UpdateCandidate mocks base method.
+func (m *MockTbRepo) UpdateCandidate(ctx context.Context, user models.Candidate) error {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "UpdateCandidate", ctx, user)
+	ret0, _ := ret[0].(error)
+	return ret0
+}
+
+// UpdateCandidate indicates an expected call of UpdateCandidate.
+func (mr *MockTbRepoMockRecorder) UpdateCandidate(ctx, user interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UpdateCandidate", reflect.TypeOf((*MockTbRepo)(nil).UpdateCandidate), ctx, user)
+}
