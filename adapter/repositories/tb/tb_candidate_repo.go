@@ -20,6 +20,9 @@ func (r *tbRepo) ListCandidateWithVote(ctx context.Context, filter models.ListCa
 	if filter.SearchByName != "" {
 		query = query.Where(`c.name ILIKE ?`, fmt.Sprintf("%%%s%%", filter.SearchByName))
 	}
+	if filter.OrderByVoteCount {
+		query = query.Order(`vote_count DESC`)
+	}
 	if filter.Limit > 0 {
 		query = query.Limit(filter.Limit)
 	}

@@ -33,11 +33,12 @@ type UpdateCandidateRequest struct {
 }
 
 type ListCandidateRequest struct {
-	ID           int    `json:"-"` // for getbyID
-	SearchByName string `json:"search_by_name"`
-	Limit        int    `json:"limit"`
-	Page         int    `json:"page"`
-	Offset       int    `json:"-"`
+	ID               int    `json:"-"` // for getbyID
+	SearchByName     string `json:"search_by_name"`
+	OrderByVoteCount bool   `json:"order_by_vote_count"`
+	Limit            int    `json:"limit"`
+	Page             int    `json:"page"`
+	Offset           int    `json:"-"`
 }
 
 type ListCandidateResponse struct {

@@ -35,6 +35,8 @@ definitions:
     properties:
       limit:
         type: integer
+      order_by_vote_count:
+        type: boolean
       page:
         type: integer
       search_by_name:

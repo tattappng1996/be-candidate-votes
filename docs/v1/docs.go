@@ -428,6 +428,9 @@ const docTemplate = `{
                 "limit": {
                     "type": "integer"
                 },
+                "order_by_vote_count": {
+                    "type": "boolean"
+                },
                 "page": {
                     "type": "integer"
                 },
