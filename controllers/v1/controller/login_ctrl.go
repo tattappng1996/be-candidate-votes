@@ -11,7 +11,7 @@ import (
 
 // Login godoc
 // @Summary Login
-// @Description /api/v1/login
+// @Description Users need to use this API to log in and grant access token.
 // @Accept json
 // @Tags Public
 // @Param Request body models.RegisterUserRequest true "Request body"
@@ -28,6 +28,9 @@ func (ctrl *controller) Login(c echo.Context) error {
 	if err := binding.GetAndValidateRequestBody(c, log, req); err != nil {
 		log.Error(err.Error())
 		return c.JSON(http.StatusBadRequest, models.NewErrorWebResponse(err))
+	}
+	if len(req.Username) > 50 {
+		return c.JSON(http.StatusBadRequest, models.Err_invalid_param)
 	}
 
 	// execute service

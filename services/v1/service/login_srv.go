@@ -22,7 +22,7 @@ func (srv *service) Login(ctx context.Context, req models.RegisterUserRequest) (
 	}
 
 	if match := srv.repo.ThirdPartyRepo.CheckPasswordHash(req.Password, userInDB.Password); !match {
-		return response, &models.Err_incorrect_user
+		return response, &models.Err_incorrect_data
 	}
 
 	accessToken, err := srv.repo.ThirdPartyRepo.CreateJWTToken(srv.cfg.JWT.Secret, srv.cfg.JWT.ClaimExpired, userInDB)

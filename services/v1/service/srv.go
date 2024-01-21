@@ -10,6 +10,8 @@ import (
 type Service interface {
 	RegisterUser(ctx context.Context, req models.RegisterUserRequest) (models.RegisterUserResponse, error)
 	Login(ctx context.Context, req models.RegisterUserRequest) (models.LoginResponse, error)
+
+	CreateCandidate(ctx context.Context, req models.CreateCandidateRequest) (models.CreateCandidateResponse, error)
 }
 
 func NewService(

@@ -37,7 +37,7 @@ func (t *TestServiceSuite) TestRegisterUser() {
 			}, nil)
 
 		expectedResp := models.RegisterUserResponse{}
-		expectedErr := &models.Err_duplicate_user
+		expectedErr := &models.Err_duplicate_data
 
 		actualResp, actualErr := t.srv.RegisterUser(ctx, req)
 

@@ -35,6 +35,21 @@ func (m *MockService) EXPECT() *MockServiceMockRecorder {
 	return m.recorder
 }
 
+// CreateCandidate mocks base method.
+func (m *MockService) CreateCandidate(ctx context.Context, req models.CreateCandidateRequest) (models.CreateCandidateResponse, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "CreateCandidate", ctx, req)
+	ret0, _ := ret[0].(models.CreateCandidateResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// CreateCandidate indicates an expected call of CreateCandidate.
+func (mr *MockServiceMockRecorder) CreateCandidate(ctx, req interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CreateCandidate", reflect.TypeOf((*MockService)(nil).CreateCandidate), ctx, req)
+}
+
 // Login mocks base method.
 func (m *MockService) Login(ctx context.Context, req models.RegisterUserRequest) (models.LoginResponse, error) {
 	m.ctrl.T.Helper()

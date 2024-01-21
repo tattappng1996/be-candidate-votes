@@ -7,8 +7,12 @@ import (
 )
 
 type Controller interface {
+	// public
 	RegisterUser(c echo.Context) error
 	Login(c echo.Context) error
+
+	// private
+	CreateCandidate(c echo.Context) error
 }
 
 type controller struct {

@@ -18,7 +18,7 @@ func (srv *service) RegisterUser(ctx context.Context, req models.RegisterUserReq
 		return response, &models.Err_backend_system
 	}
 	if userInDB.ID > 0 {
-		return response, &models.Err_duplicate_user
+		return response, &models.Err_duplicate_data
 	}
 
 	hashPassword, err := srv.repo.ThirdPartyRepo.HashPassword(req.Password)

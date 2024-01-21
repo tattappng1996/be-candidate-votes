@@ -9,32 +9,30 @@ import (
 	"github.com/labstack/echo/v4"
 )
 
-// RegisterUser godoc
-// @Summary RegisterUser
-// @Description You can use this API to create users in the system.
+// CreateCandidate godoc
+// @Summary CreateCandidate
+// @Description You can use this API to create candidates in the system.
 // @Accept json
-// @Tags Public
-// @Param Request body models.RegisterUserRequest true "Request body"
+// @Tags Private
+// @Param Authorization header string true "Bearer ${token}"
+// @Param Request body models.CreateCandidateRequest true "Request body"
 // @Produce json
 // @Consumes application/json
-// @Success 200 {object} models.RegisterUserResponse{}
-// @Router /api/v1/register [post]
-func (ctrl *controller) RegisterUser(c echo.Context) error {
+// @Success 200 {object} models.CreateCandidateResponse{}
+// @Router /api/v1/candidate [post]
+func (ctrl *controller) CreateCandidate(c echo.Context) error {
 	ctx := c.Request().Context()
 	log := logger.Ctx(ctx)
 
 	// bind and validate body
-	req := &models.RegisterUserRequest{}
+	req := &models.CreateCandidateRequest{}
 	if err := binding.GetAndValidateRequestBody(c, log, req); err != nil {
 		log.Error(err.Error())
 		return c.JSON(http.StatusBadRequest, models.NewErrorWebResponse(err))
 	}
-	if len(req.Username) > 50 {
-		return c.JSON(http.StatusBadRequest, models.Err_invalid_param)
-	}
 
 	// execute service
-	resp, err := ctrl.srv.RegisterUser(ctx, *req)
+	resp, err := ctrl.srv.CreateCandidate(ctx, *req)
 	if err != nil {
 		log.Error(err.Error())
 		return c.JSON(http.StatusInternalServerError, models.NewErrorWebResponse(err))

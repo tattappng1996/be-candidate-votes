@@ -11,8 +11,8 @@ var (
 
 	Err_backend_system = AppError{Code: "5001", Message: "Error from backend system"}
 	Err_data_not_found = AppError{Code: "5002", Message: "Error data not found"}
-	Err_duplicate_user = AppError{Code: "5003", Message: "Error duplicate user"}
-	Err_incorrect_user = AppError{Code: "5004", Message: "Error incorrect user"}
+	Err_duplicate_data = AppError{Code: "5003", Message: "Error duplicate data"}
+	Err_incorrect_data = AppError{Code: "5004", Message: "Error incorrect data"}
 
 	Unknown = AppError{Code: "9999", Message: "Unknown error"}
 )

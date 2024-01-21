@@ -1,4 +1,20 @@
 definitions:
+  models.CreateCandidateRequest:
+    properties:
+      description:
+        type: string
+      name:
+        example: karen (Max 30 Chars)
+        maxLength: 30
+        type: string
+    required:
+    - name
+    type: object
+  models.CreateCandidateResponse:
+    properties:
+      status:
+        $ref: '#/definitions/models.ResponseStatus'
+    type: object
   models.LoginResponse:
     properties:
       data:
@@ -16,8 +32,8 @@ definitions:
       password:
         type: string
       username:
+        example: john (Max 50 Chars)
         maxLength: 50
-        minLength: 1
         type: string
     required:
     - password
@@ -42,7 +58,7 @@ paths:
     get:
       consumes:
       - '*/*'
-      description: /
+      description: Just HealthCheck
       produces:
       - application/json
       responses:
@@ -54,11 +70,38 @@ paths:
       summary: HealthCheck
       tags:
       - Generals
+  /api/v1/candidate:
+    post:
+      consumes:
+      - application/json
+      description: You can use this API to create candidates in the system.
+      parameters:
+      - description: Bearer ${token}
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: Request body
+        in: body
+        name: Request
+        required: true
+        schema:
+          $ref: '#/definitions/models.CreateCandidateRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.CreateCandidateResponse'
+      summary: CreateCandidate
+      tags:
+      - Private
   /api/v1/login:
     post:
       consumes:
       - application/json
-      description: /api/v1/login
+      description: Users need to use this API to log in and grant access token.
       parameters:
       - description: Request body
         in: body
@@ -80,7 +123,7 @@ paths:
     post:
       consumes:
       - application/json
-      description: /api/v1/register
+      description: You can use this API to create users in the system.
       parameters:
       - description: Request body
         in: body

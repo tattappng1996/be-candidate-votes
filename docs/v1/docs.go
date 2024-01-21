@@ -17,7 +17,7 @@ const docTemplate = `{
     "paths": {
         "/": {
             "get": {
-                "description": "/",
+                "description": "Just HealthCheck",
                 "consumes": [
                     "*/*"
                 ],
@@ -39,9 +39,50 @@ const docTemplate = `{
                 }
             }
         },
+        "/api/v1/candidate": {
+            "post": {
+                "description": "You can use this API to create candidates in the system.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Private"
+                ],
+                "summary": "CreateCandidate",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Bearer ${token}",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "description": "Request body",
+                        "name": "Request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.CreateCandidateRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.CreateCandidateResponse"
+                        }
+                    }
+                }
+            }
+        },
         "/api/v1/login": {
             "post": {
-                "description": "/api/v1/login",
+                "description": "Users need to use this API to log in and grant access token.",
                 "consumes": [
                     "application/json"
                 ],
@@ -75,7 +116,7 @@ const docTemplate = `{
         },
         "/api/v1/register": {
             "post": {
-                "description": "/api/v1/register",
+                "description": "You can use this API to create users in the system.",
                 "consumes": [
                     "application/json"
                 ],
@@ -109,6 +150,30 @@ const docTemplate = `{
         }
     },
     "definitions": {
+        "models.CreateCandidateRequest": {
+            "type": "object",
+            "required": [
+                "name"
+            ],
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string",
+                    "maxLength": 30,
+                    "example": "karen (Max 30 Chars)"
+                }
+            }
+        },
+        "models.CreateCandidateResponse": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "$ref": "#/definitions/models.ResponseStatus"
+                }
+            }
+        },
         "models.LoginResponse": {
             "type": "object",
             "properties": {
@@ -141,7 +206,7 @@ const docTemplate = `{
                 "username": {
                     "type": "string",
                     "maxLength": 50,
-                    "minLength": 1
+                    "example": "john (Max 50 Chars)"
                 }
             }
         },

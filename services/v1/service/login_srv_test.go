@@ -58,7 +58,7 @@ func (t *TestServiceSuite) TestLogin() {
 			Return(false)
 
 		expectedResp := models.LoginResponse{}
-		expectedErr := &models.Err_incorrect_user
+		expectedErr := &models.Err_incorrect_data
 
 		actualResp, actualErr := t.srv.Login(ctx, req)
 
