@@ -10,7 +10,7 @@ import (
 
 // ClearCandidates godoc
 // @Summary ClearCandidates
-// @Description You can use this API to clear all votes in the system. (After clearing all votes user can vote again)
+// @Description You can use this API to clear all candidates and votes in the system.
 // @Accept json
 // @Tags Private (Candidate)
 // @Param Authorization header string true "Bearer ${token}"
@@ -23,7 +23,7 @@ func (ctrl *controller) ClearCandidates(c echo.Context) error {
 	log := logger.Ctx(ctx)
 
 	// execute service
-	resp, err := ctrl.srv.ClearVotes(ctx)
+	resp, err := ctrl.srv.ClearCandidates(ctx)
 	if err != nil {
 		log.Error(err.Error())
 		return c.JSON(http.StatusInternalServerError, models.NewErrorWebResponse(err))

@@ -191,7 +191,7 @@ const docTemplate = `{
         },
         "/api/v1/candidates": {
             "delete": {
-                "description": "You can use this API to clear all votes in the system. (After clearing all votes user can vote again)",
+                "description": "You can use this API to clear all candidates and votes in the system.",
                 "consumes": [
                     "application/json"
                 ],

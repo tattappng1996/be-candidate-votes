@@ -71,3 +71,19 @@ func (r *tbRepo) UpdateCandidate(ctx context.Context, candidate models.Candidate
 	}
 	return nil
 }
+
+func (r *tbRepo) DeleteCandidates(ctx context.Context) error {
+	result := r.db.WithContext(ctx).Exec("DELETE FROM candidates")
+	if result.Error != nil {
+		return result.Error
+	}
+	if result.RowsAffected < 1 {
+		return gorm.ErrRecordNotFound
+	}
+
+	if err := r.db.WithContext(ctx).Exec("ALTER SEQUENCE candidates_id_seq RESTART WITH 1").Error; err != nil {
+		return err
+	}
+
+	return nil
+}
