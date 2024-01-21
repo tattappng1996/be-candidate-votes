@@ -13,7 +13,7 @@ import (
 // @Summary GetCandidate
 // @Description You can use this API to get candidate by id in the system.
 // @Accept json
-// @Tags Private
+// @Tags Private (Candidate)
 // @Param Authorization header string true "Bearer ${token}"
 // @Param id path int true "Candidate ID"
 // @Success 200 {object} models.GetCandidateResponse{}

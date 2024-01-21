@@ -15,6 +15,8 @@ type TbRepo interface {
 	CountCandidate(ctx context.Context, filter models.ListCandidateRequest) (int, error)
 	CreateCandidate(ctx context.Context, user *models.Candidate) (*models.Candidate, error)
 	UpdateCandidate(ctx context.Context, user models.Candidate) error
+
+	DeleteVotes(ctx context.Context) error
 }
 
 func NewTbRepository(db *gorm.DB) TbRepo {

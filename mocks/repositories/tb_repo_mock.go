@@ -80,6 +80,20 @@ func (mr *MockTbRepoMockRecorder) CreateUser(ctx, user interface{}) *gomock.Call
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CreateUser", reflect.TypeOf((*MockTbRepo)(nil).CreateUser), ctx, user)
 }
 
+// DeleteVotes mocks base method.
+func (m *MockTbRepo) DeleteVotes(ctx context.Context) error {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "DeleteVotes", ctx)
+	ret0, _ := ret[0].(error)
+	return ret0
+}
+
+// DeleteVotes indicates an expected call of DeleteVotes.
+func (mr *MockTbRepoMockRecorder) DeleteVotes(ctx interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "DeleteVotes", reflect.TypeOf((*MockTbRepo)(nil).DeleteVotes), ctx)
+}
+
 // GetUser mocks base method.
 func (m *MockTbRepo) GetUser(ctx context.Context, filter models.User) (models.User, error) {
 	m.ctrl.T.Helper()

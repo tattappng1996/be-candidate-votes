@@ -49,7 +49,7 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Private"
+                    "Private (Candidate)"
                 ],
                 "summary": "UpdateCandidate",
                 "parameters": [
@@ -88,7 +88,7 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Private"
+                    "Private (Candidate)"
                 ],
                 "summary": "CreateCandidate",
                 "parameters": [
@@ -126,7 +126,7 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Private"
+                    "Private (Candidate)"
                 ],
                 "summary": "GetCandidate",
                 "parameters": [
@@ -160,7 +160,7 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Private"
+                    "Private (Candidate)"
                 ],
                 "summary": "DeleteCandidate",
                 "parameters": [
@@ -199,7 +199,7 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Private"
+                    "Private (Candidate)"
                 ],
                 "summary": "ListCandidate",
                 "parameters": [
@@ -240,7 +240,7 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Public"
+                    "Public (User)"
                 ],
                 "summary": "Login",
                 "parameters": [
@@ -274,7 +274,7 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Public"
+                    "Public (User)"
                 ],
                 "summary": "RegisterUser",
                 "parameters": [
@@ -293,6 +293,38 @@ const docTemplate = `{
                         "description": "OK",
                         "schema": {
                             "$ref": "#/definitions/models.RegisterUserResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/votes": {
+            "delete": {
+                "description": "You can use this API to clear all votes in the system.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Private (Vote)"
+                ],
+                "summary": "ClearVotes",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Bearer ${token}",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.CreateCandidateResponse"
                         }
                     }
                 }

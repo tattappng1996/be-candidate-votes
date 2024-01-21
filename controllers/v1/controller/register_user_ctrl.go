@@ -13,7 +13,7 @@ import (
 // @Summary RegisterUser
 // @Description You can use this API to create users in the system.
 // @Accept json
-// @Tags Public
+// @Tags Public (User)
 // @Param Request body models.RegisterUserRequest true "Request body"
 // @Produce json
 // @Consumes application/json

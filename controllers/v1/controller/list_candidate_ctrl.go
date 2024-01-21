@@ -13,7 +13,7 @@ import (
 // @Summary ListCandidate
 // @Description You can use this API to list candidate in the system.
 // @Accept json
-// @Tags Private
+// @Tags Private (Candidate)
 // @Param Authorization header string true "Bearer ${token}"
 // @Param Request body models.ListCandidateRequest true "Request body"
 // @Produce json

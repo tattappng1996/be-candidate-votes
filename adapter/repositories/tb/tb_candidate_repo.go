@@ -9,7 +9,7 @@ import (
 )
 
 func (r *tbRepo) ListCandidateWithVote(ctx context.Context, filter models.ListCandidateRequest) ([]models.CandidateResponse, error) {
-	query := r.db.Debug().WithContext(ctx).
+	query := r.db.WithContext(ctx).
 		Select(`c.*, COUNT(v.id) AS vote_count`).Table(`candidates c`).
 		Joins(`LEFT JOIN votes v ON v.candidate_id = c.id`).
 		Where(`c.deleted_at IS NULL`).Group(`c.id`)

@@ -15,6 +15,8 @@ type Service interface {
 	UpdateCandidate(ctx context.Context, req models.UpdateCandidateRequest) (models.CreateCandidateResponse, error)
 	ListCandidate(ctx context.Context, req models.ListCandidateRequest) (models.ListCandidateResponse, error)
 	DeleteCandidate(ctx context.Context, req models.ListCandidateRequest) (models.CreateCandidateResponse, error)
+
+	ClearVotes(context.Context) (models.CreateCandidateResponse, error)
 }
 
 func NewService(

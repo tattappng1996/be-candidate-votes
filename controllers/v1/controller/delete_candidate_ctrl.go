@@ -13,7 +13,7 @@ import (
 // @Summary DeleteCandidate
 // @Description You can use this API to delete candidate in the system (Can use when candidate vote is 0).
 // @Accept json
-// @Tags Private
+// @Tags Private (Candidate)
 // @Param Authorization header string true "Bearer ${token}"
 // @Param id path int true "Candidate ID"
 // @Success 200 {object} models.CreateCandidateResponse{}

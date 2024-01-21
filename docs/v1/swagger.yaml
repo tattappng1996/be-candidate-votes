@@ -156,7 +156,7 @@ paths:
             $ref: '#/definitions/models.CreateCandidateResponse'
       summary: CreateCandidate
       tags:
-      - Private
+      - Private (Candidate)
     put:
       consumes:
       - application/json
@@ -182,7 +182,7 @@ paths:
             $ref: '#/definitions/models.CreateCandidateResponse'
       summary: UpdateCandidate
       tags:
-      - Private
+      - Private (Candidate)
   /api/v1/candidate/{id}:
     delete:
       consumes:
@@ -207,7 +207,7 @@ paths:
             $ref: '#/definitions/models.CreateCandidateResponse'
       summary: DeleteCandidate
       tags:
-      - Private
+      - Private (Candidate)
     get:
       consumes:
       - application/json
@@ -230,7 +230,7 @@ paths:
             $ref: '#/definitions/models.GetCandidateResponse'
       summary: GetCandidate
       tags:
-      - Private
+      - Private (Candidate)
   /api/v1/list-candidate:
     post:
       consumes:
@@ -257,7 +257,7 @@ paths:
             $ref: '#/definitions/models.ListCandidateResponse'
       summary: ListCandidate
       tags:
-      - Private
+      - Private (Candidate)
   /api/v1/login:
     post:
       consumes:
@@ -279,7 +279,7 @@ paths:
             $ref: '#/definitions/models.LoginResponse'
       summary: Login
       tags:
-      - Public
+      - Public (User)
   /api/v1/register:
     post:
       consumes:
@@ -301,5 +301,26 @@ paths:
             $ref: '#/definitions/models.RegisterUserResponse'
       summary: RegisterUser
       tags:
-      - Public
+      - Public (User)
+  /api/v1/votes:
+    delete:
+      consumes:
+      - application/json
+      description: You can use this API to clear all votes in the system.
+      parameters:
+      - description: Bearer ${token}
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.CreateCandidateResponse'
+      summary: ClearVotes
+      tags:
+      - Private (Vote)
 swagger: "2.0"

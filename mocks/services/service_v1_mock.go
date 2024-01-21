@@ -35,6 +35,21 @@ func (m *MockService) EXPECT() *MockServiceMockRecorder {
 	return m.recorder
 }
 
+// ClearVotes mocks base method.
+func (m *MockService) ClearVotes(arg0 context.Context) (models.CreateCandidateResponse, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "ClearVotes", arg0)
+	ret0, _ := ret[0].(models.CreateCandidateResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// ClearVotes indicates an expected call of ClearVotes.
+func (mr *MockServiceMockRecorder) ClearVotes(arg0 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ClearVotes", reflect.TypeOf((*MockService)(nil).ClearVotes), arg0)
+}
+
 // CreateCandidate mocks base method.
 func (m *MockService) CreateCandidate(ctx context.Context, req models.CreateCandidateRequest) (models.CreateCandidateResponse, error) {
 	m.ctrl.T.Helper()

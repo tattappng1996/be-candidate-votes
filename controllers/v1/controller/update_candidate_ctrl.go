@@ -13,7 +13,7 @@ import (
 // @Summary UpdateCandidate
 // @Description You can use this API to update/edit candidate in the system.
 // @Accept json
-// @Tags Private
+// @Tags Private (Candidate)
 // @Param Authorization header string true "Bearer ${token}"
 // @Param Request body models.UpdateCandidateRequest true "Request body"
 // @Produce json

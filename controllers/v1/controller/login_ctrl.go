@@ -13,7 +13,7 @@ import (
 // @Summary Login
 // @Description Users need to use this API to log in and grant access token.
 // @Accept json
-// @Tags Public
+// @Tags Public (User)
 // @Param Request body models.RegisterUserRequest true "Request body"
 // @Produce json
 // @Consumes application/json
