@@ -11,7 +11,8 @@ import (
 func (r *tbRepo) ListCandidateWithVote(ctx context.Context, filter models.ListCandidateRequest) ([]models.CandidateResponse, error) {
 	query := r.db.Debug().WithContext(ctx).
 		Select(`c.*, COUNT(v.id) AS vote_count`).Table(`candidates c`).
-		Joins(`LEFT JOIN votes v ON v.candidate_id = c.id`).Group(`c.id`)
+		Joins(`LEFT JOIN votes v ON v.candidate_id = c.id`).
+		Where(`c.deleted_at IS NULL`).Group(`c.id`)
 
 	if filter.ID > 0 {
 		query = query.Where(`c.id = ?`, filter.ID)
@@ -35,7 +36,7 @@ func (r *tbRepo) ListCandidateWithVote(ctx context.Context, filter models.ListCa
 }
 
 func (r *tbRepo) CountCandidate(ctx context.Context, filter models.ListCandidateRequest) (int, error) {
-	query := r.db.WithContext(ctx).Table(`candidates c`)
+	query := r.db.WithContext(ctx).Table(`candidates c`).Where(`c.deleted_at IS NULL`)
 
 	if filter.SearchByName != "" {
 		query = query.Where(`c.name ILIKE ?`, fmt.Sprintf("%%%s%%", filter.SearchByName))

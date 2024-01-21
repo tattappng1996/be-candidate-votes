@@ -153,6 +153,40 @@ const docTemplate = `{
                         }
                     }
                 }
+            },
+            "delete": {
+                "description": "You can use this API to delete candidate in the system (Can use when candidate vote is 0).",
+                "consumes": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Private"
+                ],
+                "summary": "DeleteCandidate",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Bearer ${token}",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Candidate ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.CreateCandidateResponse"
+                        }
+                    }
+                }
             }
         },
         "/api/v1/list-candidate": {
@@ -343,6 +377,9 @@ const docTemplate = `{
         "models.ListCandidateResponseData": {
             "type": "object",
             "properties": {
+                "candidate_count": {
+                    "type": "integer"
+                },
                 "candidates": {
                     "type": "array",
                     "items": {

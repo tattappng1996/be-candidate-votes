@@ -50,6 +50,21 @@ func (mr *MockServiceMockRecorder) CreateCandidate(ctx, req interface{}) *gomock
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CreateCandidate", reflect.TypeOf((*MockService)(nil).CreateCandidate), ctx, req)
 }
 
+// DeleteCandidate mocks base method.
+func (m *MockService) DeleteCandidate(ctx context.Context, req models.ListCandidateRequest) (models.CreateCandidateResponse, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "DeleteCandidate", ctx, req)
+	ret0, _ := ret[0].(models.CreateCandidateResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// DeleteCandidate indicates an expected call of DeleteCandidate.
+func (mr *MockServiceMockRecorder) DeleteCandidate(ctx, req interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "DeleteCandidate", reflect.TypeOf((*MockService)(nil).DeleteCandidate), ctx, req)
+}
+
 // ListCandidate mocks base method.
 func (m *MockService) ListCandidate(ctx context.Context, req models.ListCandidateRequest) (models.ListCandidateResponse, error) {
 	m.ctrl.T.Helper()

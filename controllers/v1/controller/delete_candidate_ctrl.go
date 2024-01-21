@@ -9,16 +9,16 @@ import (
 	"github.com/labstack/echo/v4"
 )
 
-// GetCandidate godoc
-// @Summary GetCandidate
-// @Description You can use this API to get candidate by id in the system.
+// DeleteCandidate godoc
+// @Summary DeleteCandidate
+// @Description You can use this API to delete candidate in the system (Can use when candidate vote is 0).
 // @Accept json
 // @Tags Private
 // @Param Authorization header string true "Bearer ${token}"
 // @Param id path int true "Candidate ID"
-// @Success 200 {object} models.GetCandidateResponse{}
-// @Router /api/v1/candidate/{id} [get]
-func (ctrl *controller) GetCandidate(c echo.Context) error {
+// @Success 200 {object} models.CreateCandidateResponse{}
+// @Router /api/v1/candidate/{id} [delete]
+func (ctrl *controller) DeleteCandidate(c echo.Context) error {
 	ctx := c.Request().Context()
 	log := logger.Ctx(ctx)
 
@@ -36,14 +36,11 @@ func (ctrl *controller) GetCandidate(c echo.Context) error {
 	}
 
 	// execute service
-	resp, err := ctrl.srv.ListCandidate(ctx, *req)
+	resp, err := ctrl.srv.DeleteCandidate(ctx, *req)
 	if err != nil {
 		log.Error(err.Error())
 		return c.JSON(http.StatusInternalServerError, models.NewErrorWebResponse(err))
 	}
 
-	return c.JSON(http.StatusOK, models.GetCandidateResponse{
-		Data:           resp.Data.Candidates[0],
-		ResponseStatus: resp.ResponseStatus,
-	})
+	return c.JSON(http.StatusOK, resp)
 }

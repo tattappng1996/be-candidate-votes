@@ -49,6 +49,8 @@ definitions:
     type: object
   models.ListCandidateResponseData:
     properties:
+      candidate_count:
+        type: integer
       candidates:
         items:
           $ref: '#/definitions/models.CandidateResponse'
@@ -182,6 +184,30 @@ paths:
       tags:
       - Private
   /api/v1/candidate/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: You can use this API to delete candidate in the system (Can use
+        when candidate vote is 0).
+      parameters:
+      - description: Bearer ${token}
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: Candidate ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.CreateCandidateResponse'
+      summary: DeleteCandidate
+      tags:
+      - Private
     get:
       consumes:
       - application/json

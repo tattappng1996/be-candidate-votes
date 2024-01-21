@@ -16,6 +16,7 @@ type Controller interface {
 	GetCandidate(c echo.Context) error
 	UpdateCandidate(c echo.Context) error
 	ListCandidate(c echo.Context) error
+	DeleteCandidate(c echo.Context) error
 }
 
 type controller struct {
