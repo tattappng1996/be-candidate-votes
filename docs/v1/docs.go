@@ -371,6 +371,47 @@ const docTemplate = `{
                 }
             }
         },
+        "/api/v1/vote-status": {
+            "put": {
+                "description": "You can use this API to update/edit vote status in the system.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Private (Bonus)"
+                ],
+                "summary": "UpdateVoteStatus",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Bearer ${token}",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "description": "Request body",
+                        "name": "Request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.VoteStatus"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.GeneralResponse"
+                        }
+                    }
+                }
+            }
+        },
         "/api/v1/votes": {
             "delete": {
                 "description": "You can use this API to clear all votes in the system. (After clearing all votes user can vote again)",
@@ -587,6 +628,14 @@ const docTemplate = `{
             "properties": {
                 "candidate_id": {
                     "type": "integer"
+                }
+            }
+        },
+        "models.VoteStatus": {
+            "type": "object",
+            "properties": {
+                "is_active": {
+                    "type": "boolean"
                 }
             }
         }

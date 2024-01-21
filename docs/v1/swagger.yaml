@@ -120,6 +120,11 @@ definitions:
     required:
     - candidate_id
     type: object
+  models.VoteStatus:
+    properties:
+      is_active:
+        type: boolean
+    type: object
 info:
   contact: {}
 paths:
@@ -360,6 +365,33 @@ paths:
       summary: Vote
       tags:
       - Private (Vote)
+  /api/v1/vote-status:
+    put:
+      consumes:
+      - application/json
+      description: You can use this API to update/edit vote status in the system.
+      parameters:
+      - description: Bearer ${token}
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: Request body
+        in: body
+        name: Request
+        required: true
+        schema:
+          $ref: '#/definitions/models.VoteStatus'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.GeneralResponse'
+      summary: UpdateVoteStatus
+      tags:
+      - Private (Bonus)
   /api/v1/votes:
     delete:
       consumes:

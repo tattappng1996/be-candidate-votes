@@ -56,7 +56,7 @@ func routes(e *echo.Echo, cfg *appconfig.AppConfig, log *zap.Logger) {
 	v1.DELETE("/votes", ctrl.ClearVotes)
 	// bonus
 	//v1.GET("/report", ctrl.ExportReport)
-	//v1.POST("/vote-state", ctrl.OpenOrCloseVote)
+	v1.PUT("/vote-status", ctrl.UpdateVoteStatus)
 }
 
 // HealthCheck godoc

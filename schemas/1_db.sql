@@ -41,3 +41,14 @@ CREATE TABLE votes (
     candidate_id integer NOT NULL,
     created_at timestamp(6) DEFAULT CURRENT_TIMESTAMP
 );
+
+-- vote_statuses definition
+
+-- Drop table
+
+-- DROP TABLE vote_statuses;
+
+CREATE TABLE vote_statuses (
+	is_active boolean DEFAULT true,
+    created_at timestamp(6) DEFAULT CURRENT_TIMESTAMP
+);

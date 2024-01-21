@@ -153,6 +153,21 @@ func (mr *MockTbRepoMockRecorder) GetVote(ctx, filter interface{}) *gomock.Call 
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetVote", reflect.TypeOf((*MockTbRepo)(nil).GetVote), ctx, filter)
 }
 
+// GetVoteStatus mocks base method.
+func (m *MockTbRepo) GetVoteStatus(ctx context.Context) (models.VoteStatus, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "GetVoteStatus", ctx)
+	ret0, _ := ret[0].(models.VoteStatus)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// GetVoteStatus indicates an expected call of GetVoteStatus.
+func (mr *MockTbRepoMockRecorder) GetVoteStatus(ctx interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetVoteStatus", reflect.TypeOf((*MockTbRepo)(nil).GetVoteStatus), ctx)
+}
+
 // ListCandidateWithVote mocks base method.
 func (m *MockTbRepo) ListCandidateWithVote(ctx context.Context, filter models.ListCandidateRequest) ([]models.CandidateResponse, error) {
 	m.ctrl.T.Helper()
@@ -180,4 +195,18 @@ func (m *MockTbRepo) UpdateCandidate(ctx context.Context, user models.Candidate)
 func (mr *MockTbRepoMockRecorder) UpdateCandidate(ctx, user interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UpdateCandidate", reflect.TypeOf((*MockTbRepo)(nil).UpdateCandidate), ctx, user)
+}
+
+// UpdateVoteStatus mocks base method.
+func (m *MockTbRepo) UpdateVoteStatus(ctx context.Context, filter models.VoteStatus) error {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "UpdateVoteStatus", ctx, filter)
+	ret0, _ := ret[0].(error)
+	return ret0
+}
+
+// UpdateVoteStatus indicates an expected call of UpdateVoteStatus.
+func (mr *MockTbRepoMockRecorder) UpdateVoteStatus(ctx, filter interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UpdateVoteStatus", reflect.TypeOf((*MockTbRepo)(nil).UpdateVoteStatus), ctx, filter)
 }

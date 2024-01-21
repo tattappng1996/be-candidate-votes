@@ -14,6 +14,7 @@ var (
 	Err_duplicate_data = AppError{Code: "5003", Message: "Error duplicate data"}
 	Err_incorrect_data = AppError{Code: "5004", Message: "Error incorrect data"}
 	Err_cannot_delete  = AppError{Code: "5005", Message: "Error cannot delete"}
+	Err_cannot_vote    = AppError{Code: "5006", Message: "Error cannot vote"}
 
 	Unknown = AppError{Code: "9999", Message: "Unknown error"}
 )

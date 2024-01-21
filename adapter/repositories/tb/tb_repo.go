@@ -20,6 +20,9 @@ type TbRepo interface {
 	GetVote(ctx context.Context, filter models.VoteRequest) (models.Vote, error)
 	CreateVote(ctx context.Context, vote *models.Vote) (*models.Vote, error)
 	DeleteVotes(ctx context.Context) error
+
+	GetVoteStatus(ctx context.Context) (models.VoteStatus, error)
+	UpdateVoteStatus(ctx context.Context, filter models.VoteStatus) error
 }
 
 func NewTbRepository(db *gorm.DB) TbRepo {

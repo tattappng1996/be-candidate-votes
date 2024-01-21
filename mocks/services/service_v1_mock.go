@@ -155,6 +155,21 @@ func (mr *MockServiceMockRecorder) UpdateCandidate(ctx, req interface{}) *gomock
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UpdateCandidate", reflect.TypeOf((*MockService)(nil).UpdateCandidate), ctx, req)
 }
 
+// UpdateVoteStatus mocks base method.
+func (m *MockService) UpdateVoteStatus(arg0 context.Context, arg1 models.VoteStatus) (models.GeneralResponse, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "UpdateVoteStatus", arg0, arg1)
+	ret0, _ := ret[0].(models.GeneralResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// UpdateVoteStatus indicates an expected call of UpdateVoteStatus.
+func (mr *MockServiceMockRecorder) UpdateVoteStatus(arg0, arg1 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UpdateVoteStatus", reflect.TypeOf((*MockService)(nil).UpdateVoteStatus), arg0, arg1)
+}
+
 // Vote mocks base method.
 func (m *MockService) Vote(arg0 context.Context, arg1 models.VoteRequest) (models.GeneralResponse, error) {
 	m.ctrl.T.Helper()

@@ -10,6 +10,15 @@ func (srv *service) Vote(ctx context.Context, req models.VoteRequest) (models.Ge
 	log := logger.Ctx(ctx)
 	response := models.GeneralResponse{}
 
+	vs, err := srv.repo.TbRepo.GetVoteStatus(ctx)
+	if err != nil {
+		log.Error(err.Error())
+		return response, &models.Err_backend_system
+	}
+	if !vs.IsActive {
+		return response, &models.Err_cannot_vote
+	}
+
 	voteInDB, err := srv.repo.TbRepo.GetVote(ctx, req)
 	if err != nil {
 		log.Error(err.Error())

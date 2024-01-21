@@ -19,6 +19,7 @@ type Service interface {
 
 	Vote(context.Context, models.VoteRequest) (models.GeneralResponse, error)
 	ClearVotes(context.Context) (models.GeneralResponse, error)
+	UpdateVoteStatus(context.Context, models.VoteStatus) (models.GeneralResponse, error)
 }
 
 func NewService(

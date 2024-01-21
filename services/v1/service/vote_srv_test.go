@@ -14,6 +14,9 @@ func (t *TestServiceSuite) TestVote() {
 		req := models.VoteRequest{}
 
 		t.mockTbRepo.EXPECT().
+			GetVoteStatus(ctx).
+			Return(models.VoteStatus{IsActive: true}, nil)
+		t.mockTbRepo.EXPECT().
 			GetVote(ctx, req).
 			Return(models.Vote{}, fmt.Errorf("error"))
 
@@ -31,6 +34,9 @@ func (t *TestServiceSuite) TestVote() {
 		req := models.VoteRequest{}
 
 		t.mockTbRepo.EXPECT().
+			GetVoteStatus(ctx).
+			Return(models.VoteStatus{IsActive: true}, nil)
+		t.mockTbRepo.EXPECT().
 			GetVote(ctx, req).
 			Return(models.Vote{ID: 1}, nil)
 
@@ -47,6 +53,9 @@ func (t *TestServiceSuite) TestVote() {
 		ctx := context.TODO()
 		req := models.VoteRequest{}
 
+		t.mockTbRepo.EXPECT().
+			GetVoteStatus(ctx).
+			Return(models.VoteStatus{IsActive: true}, nil)
 		t.mockTbRepo.EXPECT().
 			GetVote(ctx, req).
 			Return(models.Vote{ID: 0}, nil)
@@ -67,6 +76,9 @@ func (t *TestServiceSuite) TestVote() {
 		ctx := context.TODO()
 		req := models.VoteRequest{}
 
+		t.mockTbRepo.EXPECT().
+			GetVoteStatus(ctx).
+			Return(models.VoteStatus{IsActive: true}, nil)
 		t.mockTbRepo.EXPECT().
 			GetVote(ctx, req).
 			Return(models.Vote{ID: 0}, nil)
@@ -91,6 +103,9 @@ func (t *TestServiceSuite) TestVote() {
 		}
 
 		t.mockTbRepo.EXPECT().
+			GetVoteStatus(ctx).
+			Return(models.VoteStatus{IsActive: true}, nil)
+		t.mockTbRepo.EXPECT().
 			GetVote(ctx, req).
 			Return(models.Vote{ID: 0}, nil)
 		t.mockTbRepo.EXPECT().
@@ -114,6 +129,46 @@ func (t *TestServiceSuite) TestVote() {
 		t.Equal(expectedErr, actualErr, "Error is not equal")
 	})
 
+	t.Run("Should GetVoteStatus Error", func() {
+		ctx := context.TODO()
+		req := models.VoteRequest{
+			CandidateID: 1,
+			UserID:      1,
+		}
+
+		t.mockTbRepo.EXPECT().
+			GetVoteStatus(ctx).
+			Return(models.VoteStatus{IsActive: true}, fmt.Errorf("error"))
+
+		expectedResp := models.GeneralResponse{}
+		expectedErr := &models.Err_backend_system
+
+		actualResp, actualErr := t.srv.Vote(ctx, req)
+
+		t.Equal(expectedResp, actualResp, "Response is not equal")
+		t.Equal(expectedErr, actualErr, "Error is not equal")
+	})
+
+	t.Run("Should GetVoteStatus IsActive False", func() {
+		ctx := context.TODO()
+		req := models.VoteRequest{
+			CandidateID: 1,
+			UserID:      1,
+		}
+
+		t.mockTbRepo.EXPECT().
+			GetVoteStatus(ctx).
+			Return(models.VoteStatus{IsActive: false}, nil)
+
+		expectedResp := models.GeneralResponse{}
+		expectedErr := &models.Err_cannot_vote
+
+		actualResp, actualErr := t.srv.Vote(ctx, req)
+
+		t.Equal(expectedResp, actualResp, "Response is not equal")
+		t.Equal(expectedErr, actualErr, "Error is not equal")
+	})
+
 	t.Run("Should CreateVote Success", func() {
 		ctx := context.TODO()
 		req := models.VoteRequest{
@@ -121,6 +176,9 @@ func (t *TestServiceSuite) TestVote() {
 			UserID:      1,
 		}
 
+		t.mockTbRepo.EXPECT().
+			GetVoteStatus(ctx).
+			Return(models.VoteStatus{IsActive: true}, nil)
 		t.mockTbRepo.EXPECT().
 			GetVote(ctx, req).
 			Return(models.Vote{ID: 0}, nil)
