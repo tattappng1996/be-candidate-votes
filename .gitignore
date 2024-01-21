@@ -1,0 +1,11 @@
+### VS Code ###
+.vscode/
+
+### GO
+vendor/
+app
+*.txt
+*.http
+*.csv
+*.md
+*.json

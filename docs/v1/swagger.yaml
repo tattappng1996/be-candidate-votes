@@ -1,0 +1,101 @@
+definitions:
+  models.LoginResponse:
+    properties:
+      data:
+        $ref: '#/definitions/models.LoginResponseData'
+      status:
+        $ref: '#/definitions/models.ResponseStatus'
+    type: object
+  models.LoginResponseData:
+    properties:
+      access_token:
+        type: string
+    type: object
+  models.RegisterUserRequest:
+    properties:
+      password:
+        type: string
+      username:
+        maxLength: 50
+        minLength: 1
+        type: string
+    required:
+    - password
+    - username
+    type: object
+  models.RegisterUserResponse:
+    properties:
+      status:
+        $ref: '#/definitions/models.ResponseStatus'
+    type: object
+  models.ResponseStatus:
+    properties:
+      app_code:
+        type: string
+      app_message:
+        type: string
+    type: object
+info:
+  contact: {}
+paths:
+  /:
+    get:
+      consumes:
+      - '*/*'
+      description: /
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: response
+          schema:
+            additionalProperties: true
+            type: object
+      summary: HealthCheck
+      tags:
+      - Generals
+  /api/v1/login:
+    post:
+      consumes:
+      - application/json
+      description: /api/v1/login
+      parameters:
+      - description: Request body
+        in: body
+        name: Request
+        required: true
+        schema:
+          $ref: '#/definitions/models.RegisterUserRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.LoginResponse'
+      summary: Login
+      tags:
+      - Public
+  /api/v1/register:
+    post:
+      consumes:
+      - application/json
+      description: /api/v1/register
+      parameters:
+      - description: Request body
+        in: body
+        name: Request
+        required: true
+        schema:
+          $ref: '#/definitions/models.RegisterUserRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.RegisterUserResponse'
+      summary: RegisterUser
+      tags:
+      - Public
+swagger: "2.0"
