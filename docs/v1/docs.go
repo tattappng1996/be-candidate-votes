@@ -298,6 +298,47 @@ const docTemplate = `{
                 }
             }
         },
+        "/api/v1/vote": {
+            "post": {
+                "description": "You can use this API to vote for candidates in the system. (User can only have 1 vote)",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Private (Vote)"
+                ],
+                "summary": "Vote",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Bearer ${token}",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "description": "Request body",
+                        "name": "Request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.VoteRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.CreateCandidateResponse"
+                        }
+                    }
+                }
+            }
+        },
         "/api/v1/votes": {
             "delete": {
                 "description": "You can use this API to clear all votes in the system.",
@@ -500,6 +541,17 @@ const docTemplate = `{
                     "type": "string",
                     "maxLength": 30,
                     "example": "karen (Max 30 Chars)"
+                }
+            }
+        },
+        "models.VoteRequest": {
+            "type": "object",
+            "required": [
+                "candidate_id"
+            ],
+            "properties": {
+                "candidate_id": {
+                    "type": "integer"
                 }
             }
         }

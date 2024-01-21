@@ -37,7 +37,7 @@ func AuthMiddleWare(cfg *appconfig.AppConfig) echo.MiddlewareFunc {
 			}
 			token = splitToken[1]
 
-			_, err := verifyToken(cfg.JWT.Secret, token)
+			claims, err := verifyToken(cfg.JWT.Secret, token)
 			if err != nil {
 				log.Println("verifyIDToken error: ", err)
 				return c.JSON(http.StatusUnauthorized, map[string]interface{}{
@@ -48,7 +48,7 @@ func AuthMiddleWare(cfg *appconfig.AppConfig) echo.MiddlewareFunc {
 				})
 			}
 
-			//c.Set("access_token", token)
+			c.Set("user_id", int(claims["id"].(float64)))
 
 			return next(c)
 		}

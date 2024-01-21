@@ -80,6 +80,21 @@ func (mr *MockTbRepoMockRecorder) CreateUser(ctx, user interface{}) *gomock.Call
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CreateUser", reflect.TypeOf((*MockTbRepo)(nil).CreateUser), ctx, user)
 }
 
+// CreateVote mocks base method.
+func (m *MockTbRepo) CreateVote(ctx context.Context, vote *models.Vote) (*models.Vote, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "CreateVote", ctx, vote)
+	ret0, _ := ret[0].(*models.Vote)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// CreateVote indicates an expected call of CreateVote.
+func (mr *MockTbRepoMockRecorder) CreateVote(ctx, vote interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CreateVote", reflect.TypeOf((*MockTbRepo)(nil).CreateVote), ctx, vote)
+}
+
 // DeleteVotes mocks base method.
 func (m *MockTbRepo) DeleteVotes(ctx context.Context) error {
 	m.ctrl.T.Helper()
@@ -107,6 +122,21 @@ func (m *MockTbRepo) GetUser(ctx context.Context, filter models.User) (models.Us
 func (mr *MockTbRepoMockRecorder) GetUser(ctx, filter interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetUser", reflect.TypeOf((*MockTbRepo)(nil).GetUser), ctx, filter)
+}
+
+// GetVote mocks base method.
+func (m *MockTbRepo) GetVote(ctx context.Context, filter models.VoteRequest) (models.Vote, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "GetVote", ctx, filter)
+	ret0, _ := ret[0].(models.Vote)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// GetVote indicates an expected call of GetVote.
+func (mr *MockTbRepoMockRecorder) GetVote(ctx, filter interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetVote", reflect.TypeOf((*MockTbRepo)(nil).GetVote), ctx, filter)
 }
 
 // ListCandidateWithVote mocks base method.

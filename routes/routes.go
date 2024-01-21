@@ -52,8 +52,7 @@ func routes(e *echo.Echo, cfg *appconfig.AppConfig, log *zap.Logger) {
 	v1.POST("/list-candidate", ctrl.ListCandidate)
 	v1.DELETE("/candidate/:id", ctrl.DeleteCandidate)
 	//v1.DELETE("/candidates", ctrl.ClearCandidates)
-	//v1.POST("/vote", ctrl.Vote)
-	//v1.DELETE("/vote", ctrl.UnVote)
+	v1.POST("/vote", ctrl.Vote)
 	v1.DELETE("/votes", ctrl.ClearVotes)
 	// bonus
 	//v1.GET("/report", ctrl.ExportReport)

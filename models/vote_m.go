@@ -9,3 +9,8 @@ type Vote struct {
 	CandidateID int       `json:"candidate_id"`
 	CreatedAt   time.Time `json:"-"`
 }
+
+type VoteRequest struct {
+	CandidateID int `json:"candidate_id" validate:"required"`
+	UserID      int `json:"-"`
+}

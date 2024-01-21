@@ -16,6 +16,8 @@ type TbRepo interface {
 	CreateCandidate(ctx context.Context, user *models.Candidate) (*models.Candidate, error)
 	UpdateCandidate(ctx context.Context, user models.Candidate) error
 
+	GetVote(ctx context.Context, filter models.VoteRequest) (models.Vote, error)
+	CreateVote(ctx context.Context, vote *models.Vote) (*models.Vote, error)
 	DeleteVotes(ctx context.Context) error
 }
 

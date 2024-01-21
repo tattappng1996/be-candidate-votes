@@ -111,6 +111,13 @@ definitions:
     required:
     - id
     type: object
+  models.VoteRequest:
+    properties:
+      candidate_id:
+        type: integer
+    required:
+    - candidate_id
+    type: object
 info:
   contact: {}
 paths:
@@ -302,6 +309,34 @@ paths:
       summary: RegisterUser
       tags:
       - Public (User)
+  /api/v1/vote:
+    post:
+      consumes:
+      - application/json
+      description: You can use this API to vote for candidates in the system. (User
+        can only have 1 vote)
+      parameters:
+      - description: Bearer ${token}
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: Request body
+        in: body
+        name: Request
+        required: true
+        schema:
+          $ref: '#/definitions/models.VoteRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.CreateCandidateResponse'
+      summary: Vote
+      tags:
+      - Private (Vote)
   /api/v1/votes:
     delete:
       consumes:

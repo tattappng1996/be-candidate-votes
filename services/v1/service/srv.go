@@ -16,6 +16,7 @@ type Service interface {
 	ListCandidate(ctx context.Context, req models.ListCandidateRequest) (models.ListCandidateResponse, error)
 	DeleteCandidate(ctx context.Context, req models.ListCandidateRequest) (models.CreateCandidateResponse, error)
 
+	Vote(context.Context, models.VoteRequest) (models.CreateCandidateResponse, error)
 	ClearVotes(context.Context) (models.CreateCandidateResponse, error)
 }
 
