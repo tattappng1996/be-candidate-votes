@@ -18,7 +18,7 @@ func (t *TestServiceSuite) TestCreateCandidate() {
 			CreateCandidate(ctx, gomock.Any()).
 			Return(c, fmt.Errorf("error"))
 
-		expectedResp := models.CreateCandidateResponse{}
+		expectedResp := models.GeneralResponse{}
 		expectedErr := &models.Err_backend_system
 
 		actualResp, actualErr := t.srv.CreateCandidate(ctx, req)
@@ -36,7 +36,7 @@ func (t *TestServiceSuite) TestCreateCandidate() {
 			CreateCandidate(ctx, gomock.Any()).
 			Return(c, nil)
 
-		expectedResp := models.CreateCandidateResponse{
+		expectedResp := models.GeneralResponse{
 			ResponseStatus: models.SUCCESSResponse,
 		}
 		var expectedErr error

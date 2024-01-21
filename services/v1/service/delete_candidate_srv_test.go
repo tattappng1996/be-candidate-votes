@@ -17,7 +17,7 @@ func (t *TestServiceSuite) TestDeleteCandidate() {
 			ListCandidateWithVote(ctx, gomock.Any()).
 			Return([]models.CandidateResponse{}, fmt.Errorf("error"))
 
-		expectedResp := models.CreateCandidateResponse{}
+		expectedResp := models.GeneralResponse{}
 		expectedErr := &models.Err_backend_system
 
 		actualResp, actualErr := t.srv.DeleteCandidate(ctx, req)
@@ -34,7 +34,7 @@ func (t *TestServiceSuite) TestDeleteCandidate() {
 			ListCandidateWithVote(ctx, gomock.Any()).
 			Return([]models.CandidateResponse{}, nil)
 
-		expectedResp := models.CreateCandidateResponse{}
+		expectedResp := models.GeneralResponse{}
 		expectedErr := &models.Err_data_not_found
 
 		actualResp, actualErr := t.srv.DeleteCandidate(ctx, req)
@@ -51,7 +51,7 @@ func (t *TestServiceSuite) TestDeleteCandidate() {
 			ListCandidateWithVote(ctx, gomock.Any()).
 			Return([]models.CandidateResponse{{ID: 1, VoteCount: 1}}, nil)
 
-		expectedResp := models.CreateCandidateResponse{}
+		expectedResp := models.GeneralResponse{}
 		expectedErr := &models.Err_cannot_delete
 
 		actualResp, actualErr := t.srv.DeleteCandidate(ctx, req)
@@ -71,7 +71,7 @@ func (t *TestServiceSuite) TestDeleteCandidate() {
 			UpdateCandidate(ctx, gomock.Any()).
 			Return(fmt.Errorf("error"))
 
-		expectedResp := models.CreateCandidateResponse{}
+		expectedResp := models.GeneralResponse{}
 		expectedErr := &models.Err_backend_system
 
 		actualResp, actualErr := t.srv.DeleteCandidate(ctx, req)
@@ -91,7 +91,7 @@ func (t *TestServiceSuite) TestDeleteCandidate() {
 			UpdateCandidate(ctx, gomock.Any()).
 			Return(nil)
 
-		expectedResp := models.CreateCandidateResponse{
+		expectedResp := models.GeneralResponse{
 			ResponseStatus: models.SUCCESSResponse,
 		}
 		var expectedErr error

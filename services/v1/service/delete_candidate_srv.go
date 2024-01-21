@@ -7,9 +7,9 @@ import (
 	"time"
 )
 
-func (srv *service) DeleteCandidate(ctx context.Context, req models.ListCandidateRequest) (models.CreateCandidateResponse, error) {
+func (srv *service) DeleteCandidate(ctx context.Context, req models.ListCandidateRequest) (models.GeneralResponse, error) {
 	log := logger.Ctx(ctx)
-	response := models.CreateCandidateResponse{}
+	response := models.GeneralResponse{}
 
 	candidates, err := srv.repo.TbRepo.ListCandidateWithVote(ctx, req)
 	if err != nil {

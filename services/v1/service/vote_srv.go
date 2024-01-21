@@ -6,9 +6,9 @@ import (
 	"context"
 )
 
-func (srv *service) Vote(ctx context.Context, req models.VoteRequest) (models.CreateCandidateResponse, error) {
+func (srv *service) Vote(ctx context.Context, req models.VoteRequest) (models.GeneralResponse, error) {
 	log := logger.Ctx(ctx)
-	response := models.CreateCandidateResponse{}
+	response := models.GeneralResponse{}
 
 	voteInDB, err := srv.repo.TbRepo.GetVote(ctx, req)
 	if err != nil {

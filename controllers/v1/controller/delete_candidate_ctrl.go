@@ -16,7 +16,7 @@ import (
 // @Tags Private (Candidate)
 // @Param Authorization header string true "Bearer ${token}"
 // @Param id path int true "Candidate ID"
-// @Success 200 {object} models.CreateCandidateResponse{}
+// @Success 200 {object} models.GeneralResponse{}
 // @Router /api/v1/candidate/{id} [delete]
 func (ctrl *controller) DeleteCandidate(c echo.Context) error {
 	ctx := c.Request().Context()

@@ -74,7 +74,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/models.CreateCandidateResponse"
+                            "$ref": "#/definitions/models.GeneralResponse"
                         }
                     }
                 }
@@ -113,7 +113,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/models.CreateCandidateResponse"
+                            "$ref": "#/definitions/models.GeneralResponse"
                         }
                     }
                 }
@@ -183,7 +183,39 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/models.CreateCandidateResponse"
+                            "$ref": "#/definitions/models.GeneralResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/candidates": {
+            "delete": {
+                "description": "You can use this API to clear all votes in the system. (After clearing all votes user can vote again)",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Private (Candidate)"
+                ],
+                "summary": "ClearCandidates",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Bearer ${token}",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.GeneralResponse"
                         }
                     }
                 }
@@ -333,7 +365,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/models.CreateCandidateResponse"
+                            "$ref": "#/definitions/models.GeneralResponse"
                         }
                     }
                 }
@@ -341,7 +373,7 @@ const docTemplate = `{
         },
         "/api/v1/votes": {
             "delete": {
-                "description": "You can use this API to clear all votes in the system.",
+                "description": "You can use this API to clear all votes in the system. (After clearing all votes user can vote again)",
                 "consumes": [
                     "application/json"
                 ],
@@ -365,7 +397,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/models.CreateCandidateResponse"
+                            "$ref": "#/definitions/models.GeneralResponse"
                         }
                     }
                 }
@@ -403,7 +435,7 @@ const docTemplate = `{
                 }
             }
         },
-        "models.CreateCandidateResponse": {
+        "models.GeneralResponse": {
             "type": "object",
             "properties": {
                 "status": {

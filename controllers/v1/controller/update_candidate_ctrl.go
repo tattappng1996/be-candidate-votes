@@ -18,7 +18,7 @@ import (
 // @Param Request body models.UpdateCandidateRequest true "Request body"
 // @Produce json
 // @Consumes application/json
-// @Success 200 {object} models.CreateCandidateResponse{}
+// @Success 200 {object} models.GeneralResponse{}
 // @Router /api/v1/candidate [put]
 func (ctrl *controller) UpdateCandidate(c echo.Context) error {
 	ctx := c.Request().Context()

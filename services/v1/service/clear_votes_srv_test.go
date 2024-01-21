@@ -14,7 +14,7 @@ func (t *TestServiceSuite) TestClearVotes() {
 			DeleteVotes(ctx).
 			Return(fmt.Errorf("error"))
 
-		expectedResp := models.CreateCandidateResponse{}
+		expectedResp := models.GeneralResponse{}
 		expectedErr := &models.Err_backend_system
 
 		actualResp, actualErr := t.srv.ClearVotes(ctx)
@@ -30,7 +30,7 @@ func (t *TestServiceSuite) TestClearVotes() {
 			DeleteVotes(ctx).
 			Return(nil)
 
-		expectedResp := models.CreateCandidateResponse{
+		expectedResp := models.GeneralResponse{
 			ResponseStatus: models.SUCCESSResponse,
 		}
 		var expectedErr error

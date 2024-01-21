@@ -36,10 +36,10 @@ func (m *MockService) EXPECT() *MockServiceMockRecorder {
 }
 
 // ClearVotes mocks base method.
-func (m *MockService) ClearVotes(arg0 context.Context) (models.CreateCandidateResponse, error) {
+func (m *MockService) ClearVotes(arg0 context.Context) (models.GeneralResponse, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "ClearVotes", arg0)
-	ret0, _ := ret[0].(models.CreateCandidateResponse)
+	ret0, _ := ret[0].(models.GeneralResponse)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
@@ -51,10 +51,10 @@ func (mr *MockServiceMockRecorder) ClearVotes(arg0 interface{}) *gomock.Call {
 }
 
 // CreateCandidate mocks base method.
-func (m *MockService) CreateCandidate(ctx context.Context, req models.CreateCandidateRequest) (models.CreateCandidateResponse, error) {
+func (m *MockService) CreateCandidate(ctx context.Context, req models.CreateCandidateRequest) (models.GeneralResponse, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "CreateCandidate", ctx, req)
-	ret0, _ := ret[0].(models.CreateCandidateResponse)
+	ret0, _ := ret[0].(models.GeneralResponse)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
@@ -66,10 +66,10 @@ func (mr *MockServiceMockRecorder) CreateCandidate(ctx, req interface{}) *gomock
 }
 
 // DeleteCandidate mocks base method.
-func (m *MockService) DeleteCandidate(ctx context.Context, req models.ListCandidateRequest) (models.CreateCandidateResponse, error) {
+func (m *MockService) DeleteCandidate(ctx context.Context, req models.ListCandidateRequest) (models.GeneralResponse, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "DeleteCandidate", ctx, req)
-	ret0, _ := ret[0].(models.CreateCandidateResponse)
+	ret0, _ := ret[0].(models.GeneralResponse)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
@@ -126,10 +126,10 @@ func (mr *MockServiceMockRecorder) RegisterUser(ctx, req interface{}) *gomock.Ca
 }
 
 // UpdateCandidate mocks base method.
-func (m *MockService) UpdateCandidate(ctx context.Context, req models.UpdateCandidateRequest) (models.CreateCandidateResponse, error) {
+func (m *MockService) UpdateCandidate(ctx context.Context, req models.UpdateCandidateRequest) (models.GeneralResponse, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "UpdateCandidate", ctx, req)
-	ret0, _ := ret[0].(models.CreateCandidateResponse)
+	ret0, _ := ret[0].(models.GeneralResponse)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
@@ -141,10 +141,10 @@ func (mr *MockServiceMockRecorder) UpdateCandidate(ctx, req interface{}) *gomock
 }
 
 // Vote mocks base method.
-func (m *MockService) Vote(arg0 context.Context, arg1 models.VoteRequest) (models.CreateCandidateResponse, error) {
+func (m *MockService) Vote(arg0 context.Context, arg1 models.VoteRequest) (models.GeneralResponse, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "Vote", arg0, arg1)
-	ret0, _ := ret[0].(models.CreateCandidateResponse)
+	ret0, _ := ret[0].(models.GeneralResponse)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }

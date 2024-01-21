@@ -6,9 +6,9 @@ import (
 	"context"
 )
 
-func (srv *service) ClearVotes(ctx context.Context) (models.CreateCandidateResponse, error) {
+func (srv *service) ClearVotes(ctx context.Context) (models.GeneralResponse, error) {
 	log := logger.Ctx(ctx)
-	response := models.CreateCandidateResponse{}
+	response := models.GeneralResponse{}
 
 	if err := srv.repo.TbRepo.DeleteVotes(ctx); err != nil {
 		log.Error(err.Error())

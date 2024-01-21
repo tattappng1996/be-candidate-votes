@@ -9,9 +9,9 @@ import (
 	"gorm.io/gorm"
 )
 
-func (srv *service) UpdateCandidate(ctx context.Context, req models.UpdateCandidateRequest) (models.CreateCandidateResponse, error) {
+func (srv *service) UpdateCandidate(ctx context.Context, req models.UpdateCandidateRequest) (models.GeneralResponse, error) {
 	log := logger.Ctx(ctx)
-	response := models.CreateCandidateResponse{}
+	response := models.GeneralResponse{}
 
 	if err := srv.repo.TbRepo.UpdateCandidate(ctx, models.Candidate{
 		ID:          req.ID,

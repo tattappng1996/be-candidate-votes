@@ -17,7 +17,7 @@ func (t *TestServiceSuite) TestVote() {
 			GetVote(ctx, req).
 			Return(models.Vote{}, fmt.Errorf("error"))
 
-		expectedResp := models.CreateCandidateResponse{}
+		expectedResp := models.GeneralResponse{}
 		expectedErr := &models.Err_backend_system
 
 		actualResp, actualErr := t.srv.Vote(ctx, req)
@@ -34,7 +34,7 @@ func (t *TestServiceSuite) TestVote() {
 			GetVote(ctx, req).
 			Return(models.Vote{ID: 1}, nil)
 
-		expectedResp := models.CreateCandidateResponse{}
+		expectedResp := models.GeneralResponse{}
 		expectedErr := &models.Err_duplicate_data
 
 		actualResp, actualErr := t.srv.Vote(ctx, req)
@@ -54,7 +54,7 @@ func (t *TestServiceSuite) TestVote() {
 			ListCandidateWithVote(ctx, gomock.Any()).
 			Return([]models.CandidateResponse{}, fmt.Errorf("error"))
 
-		expectedResp := models.CreateCandidateResponse{}
+		expectedResp := models.GeneralResponse{}
 		expectedErr := &models.Err_backend_system
 
 		actualResp, actualErr := t.srv.Vote(ctx, req)
@@ -74,7 +74,7 @@ func (t *TestServiceSuite) TestVote() {
 			ListCandidateWithVote(ctx, gomock.Any()).
 			Return([]models.CandidateResponse{}, nil)
 
-		expectedResp := models.CreateCandidateResponse{}
+		expectedResp := models.GeneralResponse{}
 		expectedErr := &models.Err_data_not_found
 
 		actualResp, actualErr := t.srv.Vote(ctx, req)
@@ -105,7 +105,7 @@ func (t *TestServiceSuite) TestVote() {
 			CreateVote(ctx, vote).
 			Return(vote, fmt.Errorf("error"))
 
-		expectedResp := models.CreateCandidateResponse{}
+		expectedResp := models.GeneralResponse{}
 		expectedErr := &models.Err_backend_system
 
 		actualResp, actualErr := t.srv.Vote(ctx, req)
@@ -136,7 +136,7 @@ func (t *TestServiceSuite) TestVote() {
 			CreateVote(ctx, vote).
 			Return(vote, nil)
 
-		expectedResp := models.CreateCandidateResponse{
+		expectedResp := models.GeneralResponse{
 			ResponseStatus: models.SUCCESSResponse,
 		}
 		var expectedErr error

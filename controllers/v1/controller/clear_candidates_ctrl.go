@@ -8,17 +8,17 @@ import (
 	"github.com/labstack/echo/v4"
 )
 
-// ClearVotes godoc
-// @Summary ClearVotes
+// ClearCandidates godoc
+// @Summary ClearCandidates
 // @Description You can use this API to clear all votes in the system. (After clearing all votes user can vote again)
 // @Accept json
-// @Tags Private (Vote)
+// @Tags Private (Candidate)
 // @Param Authorization header string true "Bearer ${token}"
 // @Produce json
 // @Consumes application/json
 // @Success 200 {object} models.GeneralResponse{}
-// @Router /api/v1/votes [delete]
-func (ctrl *controller) ClearVotes(c echo.Context) error {
+// @Router /api/v1/candidates [delete]
+func (ctrl *controller) ClearCandidates(c echo.Context) error {
 	ctx := c.Request().Context()
 	log := logger.Ctx(ctx)
 

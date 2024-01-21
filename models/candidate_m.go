@@ -22,10 +22,6 @@ type CreateCandidateRequest struct {
 	Description string `json:"description"`
 }
 
-type CreateCandidateResponse struct {
-	ResponseStatus ResponseStatus `json:"status"`
-}
-
 type UpdateCandidateRequest struct {
 	ID          int    `json:"id" validate:"required"`
 	Name        string `json:"name" validate:"max=30" example:"karen (Max 30 Chars)"`

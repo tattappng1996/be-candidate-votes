@@ -11,13 +11,13 @@ type Service interface {
 	RegisterUser(ctx context.Context, req models.RegisterUserRequest) (models.RegisterUserResponse, error)
 	Login(ctx context.Context, req models.RegisterUserRequest) (models.LoginResponse, error)
 
-	CreateCandidate(ctx context.Context, req models.CreateCandidateRequest) (models.CreateCandidateResponse, error)
-	UpdateCandidate(ctx context.Context, req models.UpdateCandidateRequest) (models.CreateCandidateResponse, error)
+	CreateCandidate(ctx context.Context, req models.CreateCandidateRequest) (models.GeneralResponse, error)
+	UpdateCandidate(ctx context.Context, req models.UpdateCandidateRequest) (models.GeneralResponse, error)
 	ListCandidate(ctx context.Context, req models.ListCandidateRequest) (models.ListCandidateResponse, error)
-	DeleteCandidate(ctx context.Context, req models.ListCandidateRequest) (models.CreateCandidateResponse, error)
+	DeleteCandidate(ctx context.Context, req models.ListCandidateRequest) (models.GeneralResponse, error)
 
-	Vote(context.Context, models.VoteRequest) (models.CreateCandidateResponse, error)
-	ClearVotes(context.Context) (models.CreateCandidateResponse, error)
+	Vote(context.Context, models.VoteRequest) (models.GeneralResponse, error)
+	ClearVotes(context.Context) (models.GeneralResponse, error)
 }
 
 func NewService(

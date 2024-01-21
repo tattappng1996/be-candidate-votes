@@ -19,7 +19,7 @@ definitions:
         maxLength: 30
         type: string
     type: object
-  models.CreateCandidateResponse:
+  models.GeneralResponse:
     properties:
       status:
         $ref: '#/definitions/models.ResponseStatus'
@@ -162,7 +162,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/models.CreateCandidateResponse'
+            $ref: '#/definitions/models.GeneralResponse'
       summary: CreateCandidate
       tags:
       - Private (Candidate)
@@ -188,7 +188,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/models.CreateCandidateResponse'
+            $ref: '#/definitions/models.GeneralResponse'
       summary: UpdateCandidate
       tags:
       - Private (Candidate)
@@ -213,7 +213,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/models.CreateCandidateResponse'
+            $ref: '#/definitions/models.GeneralResponse'
       summary: DeleteCandidate
       tags:
       - Private (Candidate)
@@ -238,6 +238,28 @@ paths:
           schema:
             $ref: '#/definitions/models.GetCandidateResponse'
       summary: GetCandidate
+      tags:
+      - Private (Candidate)
+  /api/v1/candidates:
+    delete:
+      consumes:
+      - application/json
+      description: You can use this API to clear all votes in the system. (After clearing
+        all votes user can vote again)
+      parameters:
+      - description: Bearer ${token}
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.GeneralResponse'
+      summary: ClearCandidates
       tags:
       - Private (Candidate)
   /api/v1/list-candidate:
@@ -335,7 +357,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/models.CreateCandidateResponse'
+            $ref: '#/definitions/models.GeneralResponse'
       summary: Vote
       tags:
       - Private (Vote)
@@ -343,7 +365,8 @@ paths:
     delete:
       consumes:
       - application/json
-      description: You can use this API to clear all votes in the system.
+      description: You can use this API to clear all votes in the system. (After clearing
+        all votes user can vote again)
       parameters:
       - description: Bearer ${token}
         in: header
@@ -356,7 +379,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/models.CreateCandidateResponse'
+            $ref: '#/definitions/models.GeneralResponse'
       summary: ClearVotes
       tags:
       - Private (Vote)

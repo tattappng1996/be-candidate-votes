@@ -18,7 +18,7 @@ func (t *TestServiceSuite) TestUpdateCandidate() {
 			UpdateCandidate(ctx, gomock.Any()).
 			Return(gorm.ErrRecordNotFound)
 
-		expectedResp := models.CreateCandidateResponse{}
+		expectedResp := models.GeneralResponse{}
 		expectedErr := &models.Err_data_not_found
 
 		actualResp, actualErr := t.srv.UpdateCandidate(ctx, req)
@@ -35,7 +35,7 @@ func (t *TestServiceSuite) TestUpdateCandidate() {
 			UpdateCandidate(ctx, gomock.Any()).
 			Return(fmt.Errorf("error"))
 
-		expectedResp := models.CreateCandidateResponse{}
+		expectedResp := models.GeneralResponse{}
 		expectedErr := &models.Err_backend_system
 
 		actualResp, actualErr := t.srv.UpdateCandidate(ctx, req)
@@ -52,7 +52,7 @@ func (t *TestServiceSuite) TestUpdateCandidate() {
 			UpdateCandidate(ctx, gomock.Any()).
 			Return(nil)
 
-		expectedResp := models.CreateCandidateResponse{
+		expectedResp := models.GeneralResponse{
 			ResponseStatus: models.SUCCESSResponse,
 		}
 		var expectedErr error

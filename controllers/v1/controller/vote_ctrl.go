@@ -18,7 +18,7 @@ import (
 // @Param Request body models.VoteRequest true "Request body"
 // @Produce json
 // @Consumes application/json
-// @Success 200 {object} models.CreateCandidateResponse{}
+// @Success 200 {object} models.GeneralResponse{}
 // @Router /api/v1/vote [post]
 func (ctrl *controller) Vote(c echo.Context) error {
 	ctx := c.Request().Context()
