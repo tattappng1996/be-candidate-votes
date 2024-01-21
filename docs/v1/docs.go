@@ -119,13 +119,10 @@ const docTemplate = `{
                 }
             }
         },
-        "/api/v1/candidate/:id": {
+        "/api/v1/candidate/{id}": {
             "get": {
                 "description": "You can use this API to get candidate by id in the system.",
                 "consumes": [
-                    "application/json"
-                ],
-                "produces": [
                     "application/json"
                 ],
                 "tags": [
@@ -139,6 +136,13 @@ const docTemplate = `{
                         "name": "Authorization",
                         "in": "header",
                         "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Candidate ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
                     }
                 ],
                 "responses": {
@@ -146,6 +150,47 @@ const docTemplate = `{
                         "description": "OK",
                         "schema": {
                             "$ref": "#/definitions/models.GetCandidateResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/list-candidate": {
+            "post": {
+                "description": "You can use this API to list candidate in the system.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Private"
+                ],
+                "summary": "ListCandidate",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Bearer ${token}",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "description": "Request body",
+                        "name": "Request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.ListCandidateRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.ListCandidateResponse"
                         }
                     }
                 }
@@ -267,6 +312,51 @@ const docTemplate = `{
                 },
                 "status": {
                     "$ref": "#/definitions/models.ResponseStatus"
+                }
+            }
+        },
+        "models.ListCandidateRequest": {
+            "type": "object",
+            "properties": {
+                "limit": {
+                    "type": "integer"
+                },
+                "page": {
+                    "type": "integer"
+                },
+                "search_by_name": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.ListCandidateResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/models.ListCandidateResponseData"
+                },
+                "status": {
+                    "$ref": "#/definitions/models.ResponseStatus"
+                }
+            }
+        },
+        "models.ListCandidateResponseData": {
+            "type": "object",
+            "properties": {
+                "candidates": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/models.CandidateResponse"
+                    }
+                },
+                "limit": {
+                    "type": "integer"
+                },
+                "page": {
+                    "type": "integer"
+                },
+                "page_count": {
+                    "type": "integer"
                 }
             }
         },

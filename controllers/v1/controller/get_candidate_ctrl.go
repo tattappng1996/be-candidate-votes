@@ -15,9 +15,9 @@ import (
 // @Accept json
 // @Tags Private
 // @Param Authorization header string true "Bearer ${token}"
-// @Produce json
+// @Param id path int true "Candidate ID"
 // @Success 200 {object} models.GetCandidateResponse{}
-// @Router /api/v1/candidate/:id [get]
+// @Router /api/v1/candidate/{id} [get]
 func (ctrl *controller) GetCandidate(c echo.Context) error {
 	ctx := c.Request().Context()
 	log := logger.Ctx(ctx)

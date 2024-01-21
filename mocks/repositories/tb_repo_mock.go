@@ -35,6 +35,21 @@ func (m *MockTbRepo) EXPECT() *MockTbRepoMockRecorder {
 	return m.recorder
 }
 
+// CountCandidate mocks base method.
+func (m *MockTbRepo) CountCandidate(ctx context.Context, filter models.ListCandidateRequest) (int, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "CountCandidate", ctx, filter)
+	ret0, _ := ret[0].(int)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// CountCandidate indicates an expected call of CountCandidate.
+func (mr *MockTbRepoMockRecorder) CountCandidate(ctx, filter interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CountCandidate", reflect.TypeOf((*MockTbRepo)(nil).CountCandidate), ctx, filter)
+}
+
 // CreateCandidate mocks base method.
 func (m *MockTbRepo) CreateCandidate(ctx context.Context, user *models.Candidate) (*models.Candidate, error) {
 	m.ctrl.T.Helper()

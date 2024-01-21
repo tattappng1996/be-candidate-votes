@@ -12,6 +12,7 @@ type TbRepo interface {
 	CreateUser(ctx context.Context, user *models.User) (*models.User, error)
 
 	ListCandidateWithVote(ctx context.Context, filter models.ListCandidateRequest) ([]models.CandidateResponse, error)
+	CountCandidate(ctx context.Context, filter models.ListCandidateRequest) (int, error)
 	CreateCandidate(ctx context.Context, user *models.Candidate) (*models.Candidate, error)
 	UpdateCandidate(ctx context.Context, user models.Candidate) error
 }

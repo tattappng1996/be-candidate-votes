@@ -27,7 +27,7 @@ func AuthMiddleWare(cfg *appconfig.AppConfig) echo.MiddlewareFunc {
 			}
 
 			splitToken := strings.SplitAfter(token, " ")
-			if len(splitToken) == 1 || splitToken[0] != "Bearer" {
+			if len(splitToken) == 1 || splitToken[0] != "Bearer " {
 				return c.JSON(http.StatusUnauthorized, map[string]interface{}{
 					"status": models.AppError{
 						Code:    models.Err_required_token.Code,

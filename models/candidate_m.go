@@ -3,7 +3,8 @@ package models
 import "time"
 
 const (
-	DefaultCandidateDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+	DefaultLimit = 50
+	DefaultPage  = 1
 )
 
 // table candidates
@@ -36,7 +37,7 @@ type ListCandidateRequest struct {
 	SearchByName string `json:"search_by_name"`
 	Limit        int    `json:"limit"`
 	Page         int    `json:"page"`
-	PageCount    int    `json:"page_count"`
+	Offset       int    `json:"-"`
 }
 
 type ListCandidateResponse struct {
@@ -45,10 +46,11 @@ type ListCandidateResponse struct {
 }
 
 type ListCandidateResponseData struct {
-	Candidates []CandidateResponse `json:"candidates"`
-	Limit      int                 `json:"limit"`
-	Page       int                 `json:"page"`
-	PageCount  int                 `json:"page_count"`
+	Candidates     []CandidateResponse `json:"candidates"`
+	CandidateCount int                 `json:"candidate_count"`
+	Limit          int                 `json:"limit"`
+	Page           int                 `json:"page"`
+	PageCount      int                 `json:"page_count"`
 }
 
 type GetCandidateResponse struct {

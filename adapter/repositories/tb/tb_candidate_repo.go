@@ -3,17 +3,27 @@ package tb
 import (
 	"be-cadidate-votes/models"
 	"context"
+	"fmt"
 
 	"gorm.io/gorm"
 )
 
 func (r *tbRepo) ListCandidateWithVote(ctx context.Context, filter models.ListCandidateRequest) ([]models.CandidateResponse, error) {
-	query := r.db.WithContext(ctx).
+	query := r.db.Debug().WithContext(ctx).
 		Select(`c.*, COUNT(v.id) AS vote_count`).Table(`candidates c`).
 		Joins(`LEFT JOIN votes v ON v.candidate_id = c.id`).Group(`c.id`)
 
 	if filter.ID > 0 {
 		query = query.Where(`c.id = ?`, filter.ID)
+	}
+	if filter.SearchByName != "" {
+		query = query.Where(`c.name ILIKE ?`, fmt.Sprintf("%%%s%%", filter.SearchByName))
+	}
+	if filter.Limit > 0 {
+		query = query.Limit(filter.Limit)
+	}
+	if filter.Offset > 0 {
+		query = query.Offset(filter.Offset)
 	}
 
 	c := []models.CandidateResponse{}
@@ -22,6 +32,21 @@ func (r *tbRepo) ListCandidateWithVote(ctx context.Context, filter models.ListCa
 	}
 
 	return c, nil
+}
+
+func (r *tbRepo) CountCandidate(ctx context.Context, filter models.ListCandidateRequest) (int, error) {
+	query := r.db.WithContext(ctx).Table(`candidates c`)
+
+	if filter.SearchByName != "" {
+		query = query.Where(`c.name ILIKE ?`, fmt.Sprintf("%%%s%%", filter.SearchByName))
+	}
+
+	var count int64
+	if err := query.Count(&count).Error; err != nil {
+		return int(count), err
+	}
+
+	return int(count), nil
 }
 
 func (r *tbRepo) CreateCandidate(ctx context.Context, candidate *models.Candidate) (*models.Candidate, error) {

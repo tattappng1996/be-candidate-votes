@@ -31,6 +31,35 @@ definitions:
       status:
         $ref: '#/definitions/models.ResponseStatus'
     type: object
+  models.ListCandidateRequest:
+    properties:
+      limit:
+        type: integer
+      page:
+        type: integer
+      search_by_name:
+        type: string
+    type: object
+  models.ListCandidateResponse:
+    properties:
+      data:
+        $ref: '#/definitions/models.ListCandidateResponseData'
+      status:
+        $ref: '#/definitions/models.ResponseStatus'
+    type: object
+  models.ListCandidateResponseData:
+    properties:
+      candidates:
+        items:
+          $ref: '#/definitions/models.CandidateResponse'
+        type: array
+      limit:
+        type: integer
+      page:
+        type: integer
+      page_count:
+        type: integer
+    type: object
   models.LoginResponse:
     properties:
       data:
@@ -152,7 +181,7 @@ paths:
       summary: UpdateCandidate
       tags:
       - Private
-  /api/v1/candidate/:id:
+  /api/v1/candidate/{id}:
     get:
       consumes:
       - application/json
@@ -163,14 +192,44 @@ paths:
         name: Authorization
         required: true
         type: string
-      produces:
-      - application/json
+      - description: Candidate ID
+        in: path
+        name: id
+        required: true
+        type: integer
       responses:
         "200":
           description: OK
           schema:
             $ref: '#/definitions/models.GetCandidateResponse'
       summary: GetCandidate
+      tags:
+      - Private
+  /api/v1/list-candidate:
+    post:
+      consumes:
+      - application/json
+      description: You can use this API to list candidate in the system.
+      parameters:
+      - description: Bearer ${token}
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: Request body
+        in: body
+        name: Request
+        required: true
+        schema:
+          $ref: '#/definitions/models.ListCandidateRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.ListCandidateResponse'
+      summary: ListCandidate
       tags:
       - Private
   /api/v1/login:

@@ -49,7 +49,7 @@ func routes(e *echo.Echo, cfg *appconfig.AppConfig, log *zap.Logger) {
 	v1.POST("/candidate", ctrl.CreateCandidate)
 	v1.GET("/candidate/:id", ctrl.GetCandidate)
 	v1.PUT("/candidate", ctrl.UpdateCandidate)
-	//v1.GET("/candidates", ctrl.ListCandidate)
+	v1.POST("/list-candidate", ctrl.ListCandidate)
 	//v1.DELETE("/candidate/:id", ctrl.DeleteCandidate)
 	//v1.PATCH("/candidate/:id", ctrl.UndeleteCandidate)
 	//v1.DELETE("/candidates", ctrl.ClearCandidates)
