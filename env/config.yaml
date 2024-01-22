@@ -7,4 +7,4 @@ jwt:
   secret: "h6HbC4XrGyJzN3LqP1eU3eJyW5fZ8Zr2"
   claimExpired: 3600
 database:
-  dsn: "host=localhost user=postgres password=Passw0rd dbname=candidate_votes_db port=5432 sslmode=disable TimeZone=Asia/Bangkok"
+  dsn: "host=host.docker.internal user=postgres password=Passw0rd dbname=candidate_votes_db port=5432 sslmode=disable TimeZone=Asia/Bangkok"
