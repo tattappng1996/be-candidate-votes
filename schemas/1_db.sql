@@ -52,3 +52,6 @@ CREATE TABLE vote_statuses (
 	is_active boolean DEFAULT true,
     created_at timestamp(6) DEFAULT CURRENT_TIMESTAMP
 );
+
+--Prepare master data
+INSERT INTO vote_statuses (is_active) VALUES (true);

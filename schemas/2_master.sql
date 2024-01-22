@@ -1,1 +1,0 @@
-INSERT INTO vote_statuses (is_active) VALUES (true)
